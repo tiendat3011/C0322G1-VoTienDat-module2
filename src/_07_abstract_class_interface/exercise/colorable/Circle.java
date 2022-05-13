@@ -1,7 +1,6 @@
-package _07_abstract_class_interface.exercise.resizeable;
+package _07_abstract_class_interface.exercise.colorable;
 
-
-public class Circle extends Shape{
+public class Circle extends Shape {
     private double radius;
 
     public Circle(double radius) {
@@ -24,11 +23,6 @@ public class Circle extends Shape{
     @Override
     public double getArea() {
         return this.radius * this.radius * Math.PI;
-    }
-
-    @Override
-    public void resize(double percent) {
-        this.radius += this.radius * percent/100;
     }
 
     @Override
