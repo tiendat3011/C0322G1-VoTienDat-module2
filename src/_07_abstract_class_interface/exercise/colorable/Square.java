@@ -15,14 +15,14 @@ public class Square extends Shape implements Colorable {
         this.size = side;
     }
 
-    public Square(String color, boolean filled, double side) {
+    public Square(String color, boolean filled, double size) {
         super(color, filled);
-        this.size = side;
+        this.size = size;
     }
 
     @Override
     public void howToColor() {
-        System.out.println( "Color all four sides.");
+        System.out.println("Color all four sides.");
     }
 
     @Override

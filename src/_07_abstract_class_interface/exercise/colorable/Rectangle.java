@@ -12,7 +12,7 @@ public class Rectangle extends Shape {
         this.length = length;
     }
 
-    public Rectangle(double width, double length, String color, boolean filled) {
+    public Rectangle(String color, boolean filled, double width, double length) {
         super(color, filled);
         this.width = width;
         this.length = length;
@@ -48,8 +48,7 @@ public class Rectangle extends Shape {
                 + getWidth()
                 + " and length="
                 + getLength()
-                + ", area is "+ getArea()
+                + ", area is " + getArea()
                 + super.toString();
     }
-
 }

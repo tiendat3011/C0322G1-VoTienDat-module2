@@ -10,7 +10,7 @@ public class Square extends Shape {
 
     @Override
     public void resize(double percent) {
-        this.side += this.side * percent/100;
+        this.side += this.side * percent / 100;
     }
 
     public double getSide() {

@@ -11,8 +11,8 @@ public class Rectangle extends Shape {
 
     @Override
     public void resize(double percent) {
-        this.width += this.width * percent/100;
-        this.length += this.length * percent/100;
+        this.width += this.width * percent / 100;
+        this.length += this.length * percent / 100;
     }
 
     public double getWidth() {
@@ -46,7 +46,7 @@ public class Rectangle extends Shape {
     public String toString() {
         return "Rectangle: " +
                 "width=" + width +
-                ", length=" + length + ". " + super.toString() ;
+                ", length=" + length + ". " + super.toString();
 
     }
 }
