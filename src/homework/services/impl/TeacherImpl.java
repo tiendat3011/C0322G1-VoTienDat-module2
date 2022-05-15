@@ -1,7 +1,9 @@
 package homework.services.impl;
+
 import homework.models.Teacher;
 import homework.services.Services;
 import homework.utils.ReadAndWriteFile;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -99,18 +101,14 @@ public class TeacherImpl implements Services {
         System.out.println("nhập id muốn tìm : ");
         int id = sc.nextInt();
         boolean flag = false;
-        if (teacherList.isEmpty()) {
-            System.out.println("Không có id");
-        } else {
-            for (Teacher item : teacherList) {
-                if (item.getId() == (id)) {
-                    flag = true;
-                    display();
-                    break;
-                }
-                if (flag = false) {
-                    System.out.println("không tìm thấy id");
-                }
+        for (Teacher item : teacherList) {
+            if (item.getId() == (id)) {
+                flag = true;
+                System.out.println(item);
+                break;
+            }
+            if (flag = false) {
+                System.out.println("không tìm thấy id");
             }
         }
     }
