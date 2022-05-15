@@ -1,8 +1,6 @@
 package homework.controllers;
-
 import homework.services.impl.StudentImpl;
 import homework.services.impl.TeacherImpl;
-
 import java.util.Scanner;
 
 public class Main {
@@ -18,7 +16,6 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-                ;
             }
             switch (choice) {
                 case 1:
@@ -28,7 +25,7 @@ public class Main {
                     student();
                     break;
                 case 3:
-                    System.exit(4);
+                    System.exit(3);
             }
         }
     }
@@ -48,7 +45,6 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-                ;
             }
             switch (choice) {
                 case 1:

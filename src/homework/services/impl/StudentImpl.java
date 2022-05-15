@@ -1,10 +1,7 @@
 package homework.services.impl;
-
 import homework.models.Student;
-import homework.models.Teacher;
 import homework.services.Services;
 import homework.utils.ReadAndWriteFile;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -58,7 +55,6 @@ public class StudentImpl implements Services {
 
         updateFile(studentList);
         System.out.println("Đã thêm thành công");
-
     }
 
     @Override
@@ -71,10 +67,9 @@ public class StudentImpl implements Services {
         boolean flag = false;
         if (studentList.isEmpty()) {
             System.out.println("Không có để xóa");
-
         } else {
             for (Student item : studentList) {
-                if (item.getId()==(id)) {
+                if (item.getId() == (id)) {
                     System.out.println("Bạn có muốn xóa (Y/N)");
                     String confirm = scanner.nextLine();
                     if ("Y".equals(confirm.toUpperCase())) {
@@ -86,7 +81,7 @@ public class StudentImpl implements Services {
                     break;
                 }
             }
-            if (flag == false) {
+            if (!flag) {
                 System.out.println("không tìm thấy thông tin");
             }
         }
@@ -98,9 +93,27 @@ public class StudentImpl implements Services {
 
     @Override
     public void find() {
+        studentList = getStudentList();
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("nhập id muốn tìm : ");
+        int id = sc.nextInt();
+        boolean flag = false;
+        if (studentList.isEmpty()) {
+            System.out.println("Không có id");
+        } else {
+            for (Student item : studentList) {
+                if (item.getId() == (id)) {
+                    flag = true;
+                    display();
+                    break;
+                }
+                if (flag = false) {
+                    System.out.println("không tìm thấy id");
+                }
+            }
+        }
     }
-
     public static void updateFile(List<Student> studentList) {
         List<String> stringList = new ArrayList<>();
         for (Student item : studentList) {

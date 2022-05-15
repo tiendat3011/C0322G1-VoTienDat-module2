@@ -1,11 +1,11 @@
 package homework.services;
 
 public interface Services {
-    public void display();
+     void display();
 
-    public void addNew();
+     void addNew();
 
-    public void delete();
+     void delete();
 
-    public void find();
+     void find();
 }
