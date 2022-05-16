@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class StudentImpl implements Services {
     public static Scanner scanner = new Scanner(System.in);
     public static List<Student> studentList;
-
     public static List<Student> getStudentList() {
         List<Student> studentList = new ArrayList<>();
         List<String[]> listStr = ReadAndWriteFile.read("src\\homework\\data\\Student.csv");
@@ -107,9 +106,9 @@ public class StudentImpl implements Services {
                 System.out.println(item);
                 break;
             }
-            if (flag = false) {
-                System.out.println("không tìm thấy id");
-            }
+        }
+        if (!flag) {
+            System.out.println("không tìm thấy id");
         }
     }
 
