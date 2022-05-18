@@ -6,6 +6,7 @@ public abstract class Person {
     private int age;
     private String gender;
 
+
     public Person() {
     }
 

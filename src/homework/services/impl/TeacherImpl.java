@@ -35,7 +35,7 @@ public class TeacherImpl implements Services {
     }
 
     @Override
-    public void addNew() {
+    public void  addNew() {
         teacherList = getTeacherList();
 
         System.out.println("nhập id");

@@ -26,6 +26,8 @@ public class Main {
                     break;
                 case 3:
                     System.exit(3);
+                default:
+                    System.out.println("Nhập không hợp lệ, cần nhập lại từ 1 tới 3");
             }
         }
     }
@@ -61,6 +63,8 @@ public class Main {
                     break;
                 case 5:
                     return;
+                default:
+                    System.out.println("Nhập không hợp lệ, cần nhập lại từ 1 tới 5");
             }
         }
     }
@@ -97,6 +101,8 @@ public class Main {
                     break;
                 case 5:
                     return;
+                default:
+                    System.out.println("Nhập không hợp lệ, cần nhập lại từ 1 tới 5");
             }
         }
     }
