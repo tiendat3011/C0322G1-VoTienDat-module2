@@ -1,6 +1,9 @@
 package homework.models;
 
-public abstract class Person {
+public class Person {
+    //abstract được sử dụng để khai báo một phương thức dạng abstract.
+    // Một phương thức abstract không có thân phương thức
+    // pt abstract thì k có định nghĩa chỉ có phần thân
     private int id;
     private String name;
     private int age;

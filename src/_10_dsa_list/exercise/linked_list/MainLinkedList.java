@@ -8,7 +8,7 @@ public class MainLinkedList {
         linkedList.addFirst(13);
         System.out.println("Độ dài mảng là " + linkedList);
         linkedList.addLast(14);
-        linkedList.addLast(16);
+        linkedList.addLast(15);
         System.out.println("Độ dài mảng là " + linkedList);
         linkedList.add(2, 20);
         System.out.println("Thêm pt 20 vào vị trí thứ 2 " + linkedList);
