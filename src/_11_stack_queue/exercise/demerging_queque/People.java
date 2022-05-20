@@ -1,11 +1,13 @@
 package _11_stack_queue.exercise.demerging_queque;
 
 public class People implements Comparable<People> {
+    // comparable và comparator dùng để sắp xếp các pt vào collection or array
+    // triển khai Interface trong class || không cần triển khai và khác class muốn sắp xếp
     private String name;
     private Boolean gender;
     private String dateOfBirth;
 
-    public People() {
+     public People() {
     }
 
     public People(String name, Boolean gender, String dateOfBirth) {
@@ -46,6 +48,7 @@ public class People implements Comparable<People> {
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 '}';
     }
+
 
     @Override
     public int compareTo(People o) {

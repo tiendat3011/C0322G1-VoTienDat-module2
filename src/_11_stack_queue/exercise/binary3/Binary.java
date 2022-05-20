@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class Binary {
     public static void main(String[] args) {
+        System.out.println(9%10);
         Stack<Integer> stack = new Stack<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập số bất kì ");
@@ -13,12 +14,10 @@ public class Binary {
             stack.push(number % 2);
             number = number / 2;
         }
-
         StringBuilder string = new StringBuilder();
         while (!stack.isEmpty()) {
             string.append(stack.pop());
         }
-
         System.out.println("Dãy nhị phân là " + string);
     }
 }

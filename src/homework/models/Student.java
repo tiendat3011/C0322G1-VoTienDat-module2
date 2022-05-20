@@ -23,7 +23,7 @@ public class Student extends Person {
         this.point = point;
     }
 
-    @Override
+  @Override
     public String toString() {
         return "Student{" + super.toString()+
                 "point=" + point +
