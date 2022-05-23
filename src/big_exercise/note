@@ -1,0 +1,21 @@
+1.
+Bao đóng ( Encapsulation) : Kĩ thuật che dấu thông tin, chỉ hiện thị ra những thông tin cần thiết.
+            đc thể hiện thông qua getter setter
+Kế thừa ( Inheritance) : Cơ chế cho phép lớp con sử dụng lại các phương thức, thuộc tính của lớp cha
+
+Đa hình ( Polymorphism ) :  Là khả năng 1 đối tượng thể hiện hành vi theo nhiều cách khác nhau ở những hoàn cảnh khác nhau
+
+Trừu tượng ( Abstraction) : Ẩn đi những thông tin của hành vi, chỉ quan tâm tới kết quả không quan tâm tới quá trình
+
+2.
+ từ khóa instanceof dùng để so sánh  một đối tượng có phải là thể hiển của một kiểu dữ liệu cụ thể không
+3.
+nếu quá 1001 thì sẽ lỗi arrayindedxoutabout
+4.
+đa hình lúc runtime là chạy ở terminar
+đa hình lúc compile là chạy ở lúc code
+
+
+
+/
+/

@@ -1,7 +1,6 @@
 package _12_java_collection_framework.linked_list;
 
-
-public class ProductManagement implements Comparable <ProductManagement> {
+public class ProductManagement implements Comparable<ProductManagement> {
     // comparable và comparator dùng để sắp xếp các pt vào collection or array
     // triển khai Interface trong class || không cần triển khai và khác class muốn sắp xếp
     private String name;
@@ -53,11 +52,11 @@ public class ProductManagement implements Comparable <ProductManagement> {
 
     @Override
     public int compareTo(ProductManagement o) {
-        if (this.getId() > o.getId()){
+        if (this.getId() > o.getId()) {
             return 1;
-        }else if (this.getId() < o.getId()){
+        } else if (this.getId() < o.getId()) {
             return -1;
-        }else {
+        } else {
             return 0;
         }
     }
