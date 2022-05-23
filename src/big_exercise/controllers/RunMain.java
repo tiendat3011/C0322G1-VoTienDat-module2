@@ -3,15 +3,17 @@ package big_exercise.controllers;
 import big_exercise.services.impl.ArrayImpl;
 import big_exercise.services.impl.ArrayListImpl;
 import big_exercise.services.impl.LinkedListImpl;
+import big_exercise.services.impl.MapImpl;
 
 import java.util.Scanner;
 
 public class RunMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayImpl person = new ArrayImpl();
-        ArrayListImpl person = new ArrayListImpl();
-        LinkedListImpl person = new LinkedListImpl();
+        MapImpl person = new MapImpl();
+//        ArrayImpl person = new ArrayImpl();
+//        ArrayListImpl person = new ArrayListImpl();
+//        LinkedListImpl person = new LinkedListImpl();
         while (true) {
             System.out.println(" Quản Lý Nhân viên  ");
             System.out.println("1: Nhân viên quản lý ");
@@ -44,9 +46,10 @@ public class RunMain {
     }
 
     private static void sapXep() {
-        ArrayImpl sapXep = new ArrayImpl();
+//        MapImpl person = new MapImpl();
+//        ArrayImpl sapXep = new ArrayImpl();
         ArrayListImpl sapXep = new ArrayListImpl();
-        LinkedListImpl sapXep = new LinkedListImpl();
+//        LinkedListImpl sapXep = new LinkedListImpl();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(" Sắp xếp  ");
