@@ -1,12 +1,10 @@
 package big_exercise.services.impl;
 
-import big_exercise.models.DailyWorker;
-import big_exercise.models.Management;
-import big_exercise.models.Person;
-import big_exercise.models.ProductionStaff;
+import big_exercise.models.*;
 import big_exercise.services.Servicee;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArrayListImpl implements Servicee {
     static ArrayList<Person> arrayList = new ArrayList<>();
@@ -53,4 +51,19 @@ public class ArrayListImpl implements Servicee {
             }
         }
     }
+
+    @Override
+    public void sapXepLuongTang() {
+        Up up = new Up();
+        Collections.sort(arrayList, up);
+        display();
+    }
+
+    @Override
+    public void sapXepTenTang() {
+        UpName upName = new UpName();
+        Collections.sort(arrayList, upName);
+        display();
+    }
+
 }

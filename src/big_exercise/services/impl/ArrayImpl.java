@@ -1,9 +1,6 @@
 package big_exercise.services.impl;
 
-import big_exercise.models.DailyWorker;
-import big_exercise.models.Management;
-import big_exercise.models.Person;
-import big_exercise.models.ProductionStaff;
+import big_exercise.models.*;
 import big_exercise.services.Servicee;
 
 public class ArrayImpl implements Servicee {
@@ -16,7 +13,6 @@ public class ArrayImpl implements Servicee {
         list[4] = new DailyWorker("thao", "5/9/1999", "vn", 5);
         list[5] = new DailyWorker("le", "6/9/1999", "vn", 9);
     }
-
     @Override
     public void display() {
         for (Person item : list) {
@@ -25,7 +21,6 @@ public class ArrayImpl implements Servicee {
             }
         }
     }
-
     @Override
     public void displayQuanLy() {
         for (Person item : list) {
@@ -34,7 +29,6 @@ public class ArrayImpl implements Servicee {
             }
         }
     }
-
     @Override
     public void displayCongNhat() {
         for (Person item : list) {
@@ -43,7 +37,6 @@ public class ArrayImpl implements Servicee {
             }
         }
     }
-
     @Override
     public void displaySanXuat() {
         for (Person item : list) {
@@ -51,5 +44,13 @@ public class ArrayImpl implements Servicee {
                 System.out.println(item);
             }
         }
+    }
+    @Override
+    public void sapXepLuongTang() {
+
+    }
+    @Override
+    public void sapXepTenTang() {
+
     }
 }

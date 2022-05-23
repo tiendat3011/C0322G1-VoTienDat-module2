@@ -1,11 +1,7 @@
 package big_exercise.services.impl;
 
-import big_exercise.models.DailyWorker;
-import big_exercise.models.Management;
-import big_exercise.models.Person;
-import big_exercise.models.ProductionStaff;
+import big_exercise.models.*;
 import big_exercise.services.Servicee;
-
 import java.util.LinkedList;
 
 public class LinkedListImpl implements Servicee {
@@ -25,7 +21,6 @@ public class LinkedListImpl implements Servicee {
             System.out.println(item);
         }
     }
-
     @Override
     public void displayQuanLy() {
         for (Person item : linkedList) {
@@ -34,7 +29,6 @@ public class LinkedListImpl implements Servicee {
             }
         }
     }
-
     @Override
     public void displayCongNhat() {
         for (Person item : linkedList) {
@@ -50,5 +44,12 @@ public class LinkedListImpl implements Servicee {
                 System.out.println(item);
             }
         }
+    }
+    @Override
+    public void sapXepLuongTang() {
+
+    }
+    @Override
+    public void sapXepTenTang() {
     }
 }

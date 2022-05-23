@@ -35,9 +35,4 @@ public class DailyWorker extends Person {
                 ",luong= " +luong()+
                 '}';
     }
-
-    @Override
-    public int compareTo(Person o) {
-        return 0;
-    }
 }
