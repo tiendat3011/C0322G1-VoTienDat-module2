@@ -14,8 +14,34 @@ nếu quá 1001 thì sẽ lỗi arrayindedxoutabout
 4.
 đa hình lúc runtime là chạy ở terminar
 đa hình lúc compile là chạy ở lúc code
-
-
-
 /
-/
+/Array List
+1 vì array list là mảng có thể giãn nở đc
+2 ko
+3Array	                                                     Array List
+ Kích thước cố định	                                        Kích thước có thể thay đổi
+ Lưu kiểu dữ liệu nguyên thuỷ và đối tượng	                Chỉ lưu kiểu dữ liệu đối tượng (Kể từ Java 5, kiểu dữ liệu nguyên thuỷ được tự động chuyển đổi sang đối tượng bằng cơ chế auto-boxing)
+ Tốc độ lưu trữ và thao tác nhanh hơn	                    Tốc độ lưu trữ và thao tác chậm hơn
+ Chỉ có thuộc tính length	                                Cung cấp nhiều method để thao tác
+// Linked List
+1 không nên dùng for i
+2
+for i thì phải có index mà linked list thì k nên dùng, nên dùng foreach
+3 Nên dùng linked list vì Chèn, xoá nhanh (chỉ việc trỏ tham chiếu lại địa chỉ trước và sau node đó)
+4Array List                                             	        Linked List
+ Sử dụng mảng động để lưu trữ các phần tử	                     Sử dụng danh sách liên kết đôi để lưu trữ các phần tử
+ Một cấu trúc dữ liệu dựa trên chỉ số index                      Các phần tử trong LinkedList là các node, mỗi node gồm 3 phần
+ và mỗi phần tử được liên kết với 1 chỉ số index        	        : địa chỉ trước nó, giá trị node, địa chỉ kế tiếp2u đến node cuối)
+ Chèn, xoá chậm (do việc dịch các phầ                           Chèn, xoá nhanh (chỉ việc trỏ tham chiếu lại địa chỉ trước và sau node đó)
+ n tử trong mảng được diễn ra khi thực hiện)
+ Có thể truy xuất phần tử ngẫu nhiên	                        Không thể truy xuất ngẫu nhiên
+ Hoạt động như một List                                         	Hoạt động như một List, Stack, Queue
+ Cần ít bộ nhớ (chỉ lưu data và index)	                                Cần nhiều bộ nhớ
+ Lưu trữ dữ liệu ít thay đổi	                                    Lưu trữ dữ liệu thay đổi nhiều
+// Comparable COmparato
+Comparable	                                                    Comparator
+Triển khai interface trong cùng class muốn sắp xếp	                Không cần triển khai interface ở class khác class cần sắp xếp
+Override compareTo()	                                        Override compare()
+Thư viện java.lang	                                                Thư viện java.util
+Ảnh hưởng thay đổi class muốn sắp xếp	                                Không ảnh hưởng
+Collections.sort(List)                                                  	Collections.sort(List, Comparator)

@@ -9,7 +9,7 @@ public class Main1 {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Nhập chuỗi: ");
-        String string = input.nextLine();
+        String string = input.nextLine();//abcdah
 
         LinkedList<Character> max = new LinkedList<>();
 

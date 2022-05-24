@@ -22,6 +22,7 @@ public class MapImpl implements Servicee {
 
     @Override
     public void display() {
+        // entryset trả về danh sách cặp key value trong mapx`
         for (Map.Entry<Integer,Person> item: personMap.entrySet()) {
             System.out.println(item.getKey() + " - " + item.getValue());
         }

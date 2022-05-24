@@ -13,8 +13,10 @@ public class ArrayImpl implements Servicee {
         list[4] = new DailyWorker("thao", "5/9/1999", "vn", 5);
         list[5] = new DailyWorker("le", "6/9/1999", "vn", 9);
     }
+
     @Override
     public void display() {
+
         for (Person item : list) {
             if (item != null) {
                 System.out.println(item);
