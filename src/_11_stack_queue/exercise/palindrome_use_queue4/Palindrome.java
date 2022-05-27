@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class Palindrome {
     public static void main(String[] args) {
-        //Able was I ere I saw Elba
+        //AblewasIereIsawElba
         Stack<String> stack = new Stack<>();
 
         Queue<String> queue = new LinkedList<>();

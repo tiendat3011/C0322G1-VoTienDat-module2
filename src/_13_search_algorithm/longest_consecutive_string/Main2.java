@@ -23,7 +23,7 @@ public class Main2 {
                 list.clear();
             }
             list.add(string.charAt(i));
-            if (list.size() > max.size()) {
+            if (list.size() > max.size()) {//5
                 max.clear();
                 max.addAll(list);
             }

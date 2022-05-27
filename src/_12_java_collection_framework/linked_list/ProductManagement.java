@@ -1,5 +1,7 @@
 package _12_java_collection_framework.linked_list;
 
+import java.util.ArrayList;
+
 public class ProductManagement implements Comparable<ProductManagement> {
     // comparable và comparator dùng để sắp xếp các pt vào collection or array
     // triển khai Interface trong class || không cần triển khai và khác class muốn sắp xếp
@@ -39,6 +41,15 @@ public class ProductManagement implements Comparable<ProductManagement> {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<ProductManagement> abc = new ArrayList<>();
+        ProductManagement productManagement = new ProductManagement();
+
+        abc.add(productManagement);
+
+        System.out.println(abc.toString());
     }
 
     @Override

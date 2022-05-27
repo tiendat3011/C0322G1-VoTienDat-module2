@@ -19,8 +19,17 @@ public class InsertionSort {
                 System.out.println(" chèn số " +x +" vào vị trí "+pos );
                 array[pos] = x;// chèn pt vào vị trí
             }
-            System.out.println(Arrays.toString(array)); // Arrays dùng để sắp xếp các pt trên mảng
+            System.out.println(Arrays.toString(array)); // Arrays dùng để sắp xếp các pt trên mảng thành dạng danh sách
                                  //.to.string hiển thị tất cả các phần tử của một mảng
         }
     }
 }
+//sx noi bot ss các cặp pt liền kề nhau sau đó dịch chuyển pt lớn bé về phía sau
+// tot 0n xau 0n2
+//sx chọn tim` pt lon, be nhat trong mảng sau đó dịch chuyển lên đau`. tiếp tục xét vs mảng còn lại, bỏ qua
+// pt đã đc sx tot xau 0n2
+//sx chèn` : lay mang con o trong mang can` sx
+//pt dau` tien trong mang phai dam bao ljuo dc sx (tang giam)
+//moi~ lan` lap lai thi` size con +1
+// chèn pt ms vao` vi tri thich hop
+// tot 0n xau 0n23w

@@ -8,7 +8,6 @@ public class RunMain {
         while (true) {
             try {
                 System.out.println("Nhập 3 cạnh tam giác");
-
                 System.out.println("Nhập  cạnh 1 tam giác");
                 int a = Integer.parseInt(scanner.nextLine());
                 System.out.println("Nhập  cạnh 2 tam giác");
@@ -20,7 +19,7 @@ public class RunMain {
             } catch (IllegalTriangleException e) {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
-                System.out.println("Không được nhập chữ");
+                System.out.println("Phải nhập số nguyên");
             }
         }
     }
