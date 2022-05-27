@@ -7,7 +7,7 @@ import java.util.List;
 public class ReadAndWriteFile {
     public static void write(String path, List<String> stringList) {
         File file = new File(path);
-        if (!file.exists()) {
+        if (!file.exists()) {// check gile toon taji trong java
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -15,9 +15,9 @@ public class ReadAndWriteFile {
             }
         }
 
-        try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-            for (String item: stringList){
+        try (FileWriter fileWriter = new FileWriter(file); // class rien khai
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {// tao bo nho dem
+            for (String item : stringList) {
                 bufferedWriter.write(item);
                 bufferedWriter.newLine();
             }
@@ -40,7 +40,7 @@ public class ReadAndWriteFile {
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line = "";
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
-                String[] arr = line.split(",");
+                String[] arr = line.split(",");// tách những phần tử trong mảng và trả về một mảng các chuỗi con.
                 list.add(arr);
             }
             return list;
