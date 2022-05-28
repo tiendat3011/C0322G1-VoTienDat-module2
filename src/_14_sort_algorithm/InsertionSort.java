@@ -10,17 +10,17 @@ public class InsertionSort {
         for (int i = 0; i < array.length; i++) {// lặp qua tất cả các số
             x = array[i]; // chọn 1 số để chèn
             pos = i; // lựa chọn vị trí để chèn
-            while (pos > 0 && x < array[pos - 1]) {// kiểm tra số liền trước có lớn hơn giá trị được chèn hay không
+            while (pos > 0 && array[pos - 1] > x) {// kiểm tra số liền trước có lớn hơn giá trị được chèn hay không
                 array[pos] = array[pos - 1]; //đổi chỗ lên đầu
                 pos--;
-                System.out.println(" Di chyển só " +array[pos] );
+                System.out.println(" Di chyển só " + array[pos]);
             }
-            if (pos!=i){
-                System.out.println(" chèn số " +x +" vào vị trí "+pos );
+            if (pos != i) {
+                System.out.println(" chèn số " + x + " vào vị trí " + pos);
                 array[pos] = x;// chèn pt vào vị trí
             }
             System.out.println(Arrays.toString(array)); // Arrays dùng để sắp xếp các pt trên mảng thành dạng danh sách
-                                 //.to.string hiển thị tất cả các phần tử của một mảng
+            //.to.string hiển thị tất cả các phần tử của một mảng
         }
     }
 }

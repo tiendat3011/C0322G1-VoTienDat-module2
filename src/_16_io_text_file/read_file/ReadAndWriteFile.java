@@ -39,8 +39,8 @@ public class ReadAndWriteFile {
         try (FileReader fileReader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line = "";
-            while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
-                String[] arr = line.split(",");// tách những phần tử trong mảng và trả về một mảng các chuỗi con.
+            while ((line = bufferedReader.readLine()) != null && !line.equals("")) {// đọc từng dòng cho đến hết.
+                String[] arr = line.split(",");// tách những phần tử trong mảng và trả về một mảng các chuỗi con cách nhau bởi dấu ,
                 list.add(arr);
             }
             return list;

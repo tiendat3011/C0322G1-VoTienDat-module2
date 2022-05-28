@@ -15,11 +15,10 @@ public class ReadAndWriteFile {
             }
         }
 
-        try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (FileOutputStream fileWriter = new FileOutputStream(file);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileWriter)) {
             for (String item: stringList){
-                bufferedWriter.write(item);
-                bufferedWriter.newLine();
+                objectOutputStream.write(Integer.parseInt(item));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,11 +35,11 @@ public class ReadAndWriteFile {
                 e.printStackTrace();
             }
         }
-        try (FileReader fileReader = new FileReader(file);
+        try (FileInputStream fileReader = new FileInputStream(file);
              //Câu lệnh try-with-resources là câu lệnh try dùng để khai báo một hoặc nhiều tài nguyên.
              // Một tài nguyên là một đối tượng trong đó phải được đóng sau khi chương trình kết thúc với nó.
              // Câu lệnh try -with-resources đảm bảo rằng mỗi tài nguyên sẽ được đóng ngay khi kết thúc câu lệnh.
-             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+             ObjectInputStream bufferedReader = new ObjectInputStream(fileReader)) {
             String line = "";
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
                 list.add(line);
