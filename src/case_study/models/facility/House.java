@@ -1,55 +1,125 @@
 package case_study.models.facility;
 
 public class House extends Facility {
-    private int roomStandardHouse;
-    private int numberFloorsHouse;
 
-    public House() {
+    public House(String nameService,
+                 String rentType,
+                 String standardService,
+                 int floor,
+                 double areaUse,
+                 int feeRent,
+                 int maximumCustomer,
+                 String id) {
+
+        super(nameService, rentType, standardService, floor, areaUse, feeRent, maximumCustomer, id);
     }
 
-    public House(int roomStandardHouse, int numberFloorsHouse) {
-        this.roomStandardHouse = roomStandardHouse;
-        this.numberFloorsHouse = numberFloorsHouse;
+    @Override
+    public int getMaintain() {
+        return super.getMaintain();
     }
 
-    public House(String idFacility,
-                 String nameService,
-                 int usableArea,
-                 int cost,
-                 int maxPeople,
-                 String rentalType,
-                 int roomStandardHouse,
-                 int numberFloorsHouse) {
-        super(idFacility, nameService, usableArea, cost, maxPeople, rentalType);
-        this.roomStandardHouse = roomStandardHouse;
-        this.numberFloorsHouse = numberFloorsHouse;
+    @Override
+    public void setMaintain(int maintain) {
+        super.setMaintain(maintain);
     }
 
-    public int getRoomStandardHouse() {
-        return roomStandardHouse;
+    @Override
+    public String getNameService() {
+        return super.getNameService();
     }
 
-    public void setRoomStandardHouse(int roomStandardHouse) {
-        this.roomStandardHouse = roomStandardHouse;
+    @Override
+    public void setNameService(String nameService) {
+        super.setNameService(nameService);
     }
 
-    public int getNumberFloorsHouse() {
-        return numberFloorsHouse;
+    @Override
+    public String getRentType() {
+        return super.getRentType();
     }
 
-    public void setNumberFloorsHouse(int numberFloorsHouse) {
-        this.numberFloorsHouse = numberFloorsHouse;
+    @Override
+    public void setRentType(String rentType) {
+        super.setRentType(rentType);
+    }
+
+    @Override
+    public String getStandardService() {
+        return super.getStandardService();
+    }
+
+    @Override
+    public void setStandardService(String standardService) {
+        super.setStandardService(standardService);
+    }
+
+    @Override
+    public int getFloor() {
+        return super.getFloor();
+    }
+
+    @Override
+    public void setFloor(int floor) {
+        super.setFloor(floor);
+    }
+
+    @Override
+    public double getAreaUse() {
+        return super.getAreaUse();
+    }
+
+    @Override
+    public void setAreaUse(double areaUse) {
+        super.setAreaUse(areaUse);
+    }
+
+    @Override
+    public int getFeeRent() {
+        return super.getFeeRent();
+    }
+
+    @Override
+    public void setFeeRent(int feeRent) {
+        super.setFeeRent(feeRent);
+    }
+
+    @Override
+    public int getMaximumCustomer() {
+        return super.getMaximumCustomer();
+    }
+
+    @Override
+    public void setMaximumCustomer(int maximumCustomer) {
+        super.setMaximumCustomer(maximumCustomer);
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
     }
 
     @Override
     public String toString() {
-        return super.toString()+
-                "House{" +
-                "roomStandardHouse=" + roomStandardHouse +
-                ", numberFloorsHouse=" + numberFloorsHouse +
-                '}';
+        return super.toString() +
+                ", standard service = " + getStandardService() +
+                ", floor = " + getFloor();
     }
-    public String getLine(){
-        return super.toString()+ "," +roomStandardHouse+ "," +numberFloorsHouse;
+
+    @Override
+    public String getLine() {
+        return  getNameService() + "," +
+                getRentType() + "," +
+                getStandardService() + "," +
+                getFloor() + "," +
+                getAreaUse() + "," +
+                getFeeRent() + "," +
+                getMaximumCustomer() + "," +
+                getId();
     }
 }

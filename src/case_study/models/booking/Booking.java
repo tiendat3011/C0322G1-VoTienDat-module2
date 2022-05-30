@@ -1,24 +1,22 @@
 package case_study.models.booking;
 
-import case_study.models.facility.Facility;
-import case_study.models.person.Customer;
-
-public abstract class Booking {
+public  class Booking {
     private int idBooking;
-    private String dayFirst;
-    private String dayLast;
-    private Customer customer;
-    private Facility facility;
+    private String starTime, endTime, customerId, facilityId;
+    private String statusContract = "false";
 
-    public Booking() {
-    }
-
-    public Booking(int idBooking, String dayFirst, String dayLast, Customer customer, Facility facility) {
+    public Booking(int idBooking,
+                   String starTime,
+                   String endTime,
+                   String customerId,
+                   String facilityId,
+                   String statusContract) {
         this.idBooking = idBooking;
-        this.dayFirst = dayFirst;
-        this.dayLast = dayLast;
-        this.customer = customer;
-        this.facility = facility;
+        this.starTime = starTime;
+        this.endTime = endTime;
+        this.customerId = customerId;
+        this.facilityId = facilityId;
+        this.statusContract = statusContract;
     }
 
     public int getIdBooking() {
@@ -29,46 +27,58 @@ public abstract class Booking {
         this.idBooking = idBooking;
     }
 
-    public String getDayFirst() {
-        return dayFirst;
+    public String getStarTime() {
+        return starTime;
     }
 
-    public void setDayFirst(String dayFirst) {
-        this.dayFirst = dayFirst;
+    public void setStarTime(String starTime) {
+        this.starTime = starTime;
     }
 
-    public String getDayLast() {
-        return dayLast;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setDayLast(String dayLast) {
-        this.dayLast = dayLast;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getStatusContract() {
+        return statusContract;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setStatusContract(String statusContract) {
+        this.statusContract = statusContract;
     }
 
-    public Facility getFacility() {
-        return facility;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setFacility(Facility facility) {
-        this.facility = facility;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getFacilityId() {
+        return facilityId;
+    }
+
+    public void setFacilityId(String facilityId) {
+        this.facilityId = facilityId;
     }
 
     @Override
     public String toString() {
-        return "Booking" +
-                "idBooking=" + idBooking +
-                ", dayFirst='" + dayFirst + '\'' +
-                ", dayLast='" + dayLast + '\'' +
-                ", customer=" + customer +
-                ", facility=" + facility ;
+        return  "[" +
+                "idBooking = " + idBooking +
+                ", idCustomerNumber = " + customerId +
+                ", starTime = " + starTime + '\'' +
+                ", endTime = " + endTime + '\'' +
+                ", nameService = " + facilityId +
+                ", status Contract = " + statusContract;
+    }
+
+    public String getLine(){
+        return idBooking +","+ starTime +","+ endTime +","+ customerId +"," +facilityId + "," + statusContract;
     }
 }
-

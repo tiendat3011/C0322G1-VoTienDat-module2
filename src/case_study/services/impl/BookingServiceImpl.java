@@ -12,17 +12,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void addNew() {
-
+    public void add() {
     }
 
-    @Override
-    public void edit() {
-
-    }
-
-    @Override
-    public void delete() {
-
-    }
 }

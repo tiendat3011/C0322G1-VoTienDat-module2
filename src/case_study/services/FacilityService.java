@@ -3,10 +3,14 @@ package case_study.services;
 import java.io.IOException;
 
 public interface FacilityService {
-    public void display() throws IOException;
-    public void displayMaintain();
-    public void addNewVilla();
-    public void addNewHouse();
-    public void addNewRoom();
+    void display() throws IOException;
+
+    void addNewVilla();
+
+    void addNewHouse();
+
+    void addNewRoom();
+
+    void displayMaintain();
 
 }

@@ -2,143 +2,154 @@ package case_study.services.impl;
 
 import case_study.models.person.Customer;
 import case_study.services.CustomerService;
+import case_study.services.regex.CustomerRegex;
 import case_study.utils.ReadAndWrite;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    private static List<Customer> customerList = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
+    public static List<Customer> customerList = getCustomerList();
 
-
-    @Override
-    public void display() throws IOException {
-        List<String[]> listStr = ReadAndWrite.readFile("src\\case_study\\data\\Customer.csv");
-        // đ biết lluon . nhưng bắt buộc phải clear.ok ?
-//            employeeList.clear();
-        for (String[] item  : listStr) {
-
-            Customer customer= new Customer(Integer.parseInt(item[0]),item[1],item[2],item[3],Integer.parseInt(item[4]),
-                    Integer.parseInt(item[5]),item[6],item[7],item[8]);
-            System.out.println(customer);
-        }
-//
-//        for (Customer customer : customerList) {
-//            System.out.println(customer.toString());
-//        }
-    }
-
-    @Override
-    public void addNew() {
-        System.out.println("Nhập Id");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        boolean check = true;
-        for (Customer customer : customerList) {
-            if (customer.getId() == id) {
-                check = false;
+    public static List<Customer> getCustomerList() {
+        customerList = new LinkedList<>();
+        try {
+            List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\customers.csv");
+            for (String[] item : list) {
+                customerList.add(new Customer(
+                        item[0],
+                        item[1],
+                        item[2],
+                        item[3],
+                        item[4],
+                        item[5],
+                        item[6],
+                        item[7],
+                        item[8]));
             }
+        } catch (NullPointerException e) {
         }
-        if (check) {
-            System.out.println("Nhập tên");
-            String name = scanner.nextLine();
+        return customerList;
+    }
 
-            System.out.println("Nhập ngày sinh");
-            String dateOfBirth = scanner.nextLine();
 
-            System.out.println("Nhập giới tính");
-            String sex = scanner.nextLine();
-
-            System.out.println("Nhập số CMND");
-            int numCMND = Integer.parseInt(scanner.nextLine());
-
-            System.out.println("Nhập số điện thoại");
-            int phoneNum = Integer.parseInt(scanner.nextLine());
-
-            System.out.println("Nhập email");
-            String email = scanner.nextLine();
-
-            System.out.println("Nhập địa chỉ");
-            String address = scanner.nextLine();
-
-            System.out.println("Nhập Loại khách");
-            String customerType = scanner.nextLine();
-
-            Customer customer = new Customer(id,
-                    name,
-                    dateOfBirth,
-                    sex,
-                    numCMND,
-                    phoneNum,
-                    email,
-                    address,
-                    customerType);
-            customerList.add(customer);
-            List<String> stringList =  new ArrayList<>();
-            String line = id +"," +name +","+ dateOfBirth+","+sex+","+numCMND+","+phoneNum+","+email+","+address+","+customerType;
-            ReadAndWrite.writeFile("src\\case_study\\data\\Customer.csv",line);
-            System.out.println("Đã thêm thành công");
+    @Override
+    public void display() {
+        customerList = getCustomerList();
+        for (Customer customer : customerList) {
+            System.out.println(customer.toString());
         }
     }
 
     @Override
-    public void edit() throws IOException {
-        System.out.println("Nhập Id");
-        int id = Integer.parseInt(scanner.nextLine());
-
+    public void add() {
+        customerList = getCustomerList();
         System.out.println("Nhập tên");
         String name = scanner.nextLine();
 
         System.out.println("Nhập ngày sinh");
-        String dateOfBirth = scanner.nextLine();
+        String dateOfBirth = CustomerRegex.dateOfBirth();
 
         System.out.println("Nhập giới tính");
-        String sex = scanner.nextLine();
-
-        System.out.println("Nhập số CMND");
-        int numCMND = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập số điện thoại");
-        int phoneNum = Integer.parseInt(scanner.nextLine());
+        String gender = scanner.nextLine();
 
         System.out.println("Nhập email");
         String email = scanner.nextLine();
 
+        System.out.println("Nhập ID card number");
+        String idCardNumber = scanner.nextLine();
+
+        System.out.println("Nhập số điện thoại");
+        String phoneNumber = scanner.nextLine();
+
+        System.out.println("Nhập ID ");
+        String customerID = CustomerRegex.idRegex(customerList);
+
         System.out.println("Nhập địa chỉ");
         String address = scanner.nextLine();
 
-        System.out.println("Nhập loại khách");
-        String customerType = scanner.nextLine();
+        String customerType = CustomerRegex.customerType();
 
-
-        boolean flag = false;
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getId() == id) {
-                customerList.remove(i);
-                customerList.add(new Customer(id,
-                        name,
-                        dateOfBirth,
-                        sex,
-                        numCMND,
-                        phoneNum,
-                        email,
-                        address,
-                        customerType));
-                flag = true;
-                display();
-                break;
-            }
-        }
-        if (!flag) {
-            System.out.println("Không có id này: ");
-        }
+        String line = name + "," +
+                dateOfBirth + "," +
+                gender + "," +
+                email + "," +
+                idCardNumber + "," +
+                phoneNumber + "," +
+                customerID + "," +
+                address + "," +
+                customerType;
+        ReadAndWrite.write("src\\case_study\\data\\customers.csv", line);
+        System.out.println("Thêm thành công");
     }
 
     @Override
-    public void delete() {
+    public void edit() {
+        customerList = getCustomerList();
+        System.out.println("Nhập Id muốn sửa");
+        String id = scanner.nextLine();
+        boolean flag = false;
+        int index = 0;
 
+        for (int i = 0; i < customerList.size(); i++) {
+            if (customerList.get(i).getIdCustomerNumber().equals(id)) {
+                index = i;
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("Nhập tên");
+            String name = scanner.nextLine();
+            customerList.get(index).setName(name);
+
+            System.out.println("Nhập ngày sinh");
+            String dateOfBirth = CustomerRegex.dateOfBirth();
+            customerList.get(index).setDateOfBirth(dateOfBirth);
+
+            System.out.println("Nhập giới tính");
+            String gender = scanner.nextLine();
+            customerList.get(index).setGender(gender);
+
+            System.out.println("Nhập email");
+            String email = scanner.nextLine();
+            customerList.get(index).setEmail(email);
+
+            System.out.println("Nhập ID card number");
+            String idCardNumber = scanner.nextLine();
+            customerList.get(index).setIdCardNumber(idCardNumber);
+
+            System.out.println("Nhập số điện thoại");
+            String phoneNumber = scanner.nextLine();
+            customerList.get(index).setPhoneNumber(phoneNumber);
+
+            System.out.println("Nhập id");
+            String customerId = scanner.nextLine();
+            customerList.get(index).setIdCustomerNumber(customerId);
+
+            System.out.println("Nhập địa chỉ");
+            String address = scanner.nextLine();
+            customerList.get(index).setAddress(address);
+
+            String customerType = CustomerRegex.customerType();
+            customerList.get(index).setCustomerType(customerType);
+
+            writeCustomerList(customerList);
+            System.out.println("Sửa thành công");
+        } else {
+            System.out.println("Không có id này");
+        }
+    }
+
+    public static void writeCustomerList(List<Customer> customers) {
+        File file = new File("src\\case_study\\data\\customers.csv");
+        file.delete();
+
+        for (Customer item : customers) {
+            ReadAndWrite.write("src\\case_study\\data\\customers.csv", item.getLine());
+        }
     }
 }

@@ -1,44 +1,51 @@
 package case_study.utils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 public class ReadAndWrite {
-    public static List<String[]> readFile(String path) {
+
+    public static void write(String path, String line) {
         File file = new File(path);
-        List<String[]> list = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(file);
-             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line = "";
-            while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
-                String[] array = line.split(",");
-                list.add(array);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-    public static void writeFile(String path,String listLine) {
-        File file = new File(path);
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        try (FileWriter fileWriter = new FileWriter(file, true);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);) {
 
-            bufferedWriter.write(listLine);
+        try (FileWriter fileWriter = new FileWriter(file,true);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.write(line);
             bufferedWriter.newLine();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<String[]> read(String path) {
+        List<String[]> list = new ArrayList<>();
+        File file = new File(path);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try (FileReader fileReader = new FileReader(file);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
+                String[] arr = line.split(",");
+                list.add(arr);
+            }
+            return list;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

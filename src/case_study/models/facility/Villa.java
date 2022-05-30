@@ -1,66 +1,138 @@
 package case_study.models.facility;
 
 public class Villa extends Facility {
-    private String roomStandardVilla;
-    private int poolArea;
-    private int numberFloorsVilla;
+    private double sizePool;
 
-    public Villa() {
-    }
-    public Villa(String roomStandardVilla, int poolArea, int numberFloorsVilla) {
-        this.roomStandardVilla = roomStandardVilla;
-        this.poolArea = poolArea;
-        this.numberFloorsVilla = numberFloorsVilla;
-    }
+    public Villa(String nameService,
+                 String rentType,
+                 String standardService,
+                 int floor,
+                 double areaUse,
+                 int feeRent,
+                 int maximumCustomer,
+                 String id,
+                 double sizePool) {
 
-    public Villa(String idFacility,
-                 String nameService,
-                 int usableArea,
-                 int cost,
-                 int maxPeople,
-                 String rentalType,
-                 String roomStandardVilla,
-                 int poolArea,
-                 int numberFloorsVilla) {
-        super(idFacility, nameService, usableArea, cost, maxPeople, rentalType);
-        this.roomStandardVilla = roomStandardVilla;
-        this.poolArea = poolArea;
-        this.numberFloorsVilla = numberFloorsVilla;
+        super(nameService, rentType, standardService, floor, areaUse, feeRent, maximumCustomer, id);
+        this.sizePool = sizePool;
     }
 
-    public String getRoomStandardVilla() {
-        return roomStandardVilla;
+    @Override
+    public int getMaintain() {
+        return super.getMaintain();
     }
 
-    public void setRoomStandardVilla(String roomStandardVilla) {
-        this.roomStandardVilla = roomStandardVilla;
+    @Override
+    public void setMaintain(int maintain) {
+        super.setMaintain(maintain);
     }
 
-    public int getPoolArea() {
-        return poolArea;
+    public double getSizePool() {
+        return sizePool;
     }
 
-    public void setPoolArea(int poolArea) {
-        this.poolArea = poolArea;
+    public void setSizePool(double sizePool) {
+        this.sizePool = sizePool;
     }
 
-    public int getNumberFloorsVilla() {
-        return numberFloorsVilla;
+    @Override
+    public String getNameService() {
+        return super.getNameService();
     }
 
-    public void setNumberFloorsVilla(int numberFloorsVilla) {
-        this.numberFloorsVilla = numberFloorsVilla;
+    @Override
+    public void setNameService(String nameService) {
+        super.setNameService(nameService);
+    }
+
+    @Override
+    public String getRentType() {
+        return super.getRentType();
+    }
+
+    @Override
+    public void setRentType(String rentType) {
+        super.setRentType(rentType);
+    }
+
+    @Override
+    public String getStandardService() {
+        return super.getStandardService();
+    }
+
+    @Override
+    public void setStandardService(String standardService) {
+        super.setStandardService(standardService);
+    }
+
+    @Override
+    public int getFloor() {
+        return super.getFloor();
+    }
+
+    @Override
+    public void setFloor(int floor) {
+        super.setFloor(floor);
+    }
+
+    @Override
+    public double getAreaUse() {
+        return super.getAreaUse();
+    }
+
+    @Override
+    public void setAreaUse(double areaUse) {
+        super.setAreaUse(areaUse);
+    }
+
+    @Override
+    public int getFeeRent() {
+        return super.getFeeRent();
+    }
+
+    @Override
+    public void setFeeRent(int feeRent) {
+        super.setFeeRent(feeRent);
+    }
+
+    @Override
+    public String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(String id) {
+        super.setId(id);
+    }
+
+    @Override
+    public int getMaximumCustomer() {
+        return super.getMaximumCustomer();
+    }
+
+    @Override
+    public void setMaximumCustomer(int maximumCustomer) {
+        super.setMaximumCustomer(maximumCustomer);
     }
 
     @Override
     public String toString() {
-        return super.toString()+
-                "Villa" +
-                "roomStandardVilla='" + roomStandardVilla + '\'' +
-                ", poolArea=" + poolArea +
-                ", numberFloorsVilla=" + numberFloorsVilla ;
+        return super.toString() +
+                ", standard service = " + getStandardService() +
+                ", size pool = " +
+                sizePool+ ", floor = " + getFloor();
     }
-    public String getLine(){
-        return super.toString()+ "," +roomStandardVilla+ "," +poolArea+ "," +numberFloorsVilla;
+
+    @Override
+    public String getLine() {
+        return  getNameService() + "," +
+                getRentType() + "," +
+                getStandardService() + "," +
+                getFloor() + "," +
+                getAreaUse() + "," +
+                getFeeRent() + "," +
+                getMaximumCustomer() + "," +
+                getId() + "," +
+                getSizePool();
     }
 }

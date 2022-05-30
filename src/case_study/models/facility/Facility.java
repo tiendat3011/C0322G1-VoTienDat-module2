@@ -1,31 +1,52 @@
 package case_study.models.facility;
 
-public abstract class Facility {
-    private String idFacility;// sua lai
-    private String nameService;
-    private int usableArea;
-    private int cost;
-    private int maxPeople;
-    private String rentalType;
+public abstract class Facility{
+    private String nameService, rentType, standardService, id;
+    private int maximumCustomer, floor, feeRent;
+    private double areaUse;
+    private int maintain = 0;
 
-    public Facility() {
-    }
 
-    public Facility(String idFacility, String nameService, int usableArea, int cost, int maxPeople, String rentalType) {
-        this.idFacility = idFacility;
+    public Facility(String nameService,
+                    String rentType,
+                    double areaUse,
+                    int feeRent,
+                    int maximumCustomer,
+                    String id) {
+
         this.nameService = nameService;
-        this.usableArea = usableArea;
-        this.cost = cost;
-        this.maxPeople = maxPeople;
-        this.rentalType = rentalType;
+        this.rentType = rentType;
+        this.areaUse = areaUse;
+        this.feeRent = feeRent;
+        this.maximumCustomer = maximumCustomer;
+        this.id = id;
     }
 
-    public String getIdFacility() {
-        return idFacility;
+    public Facility(String nameService,
+                    String rentType,
+                    String standardService,
+                    int floor,
+                    double areaUse,
+                    int feeRent,
+                    int maximumCustomer,
+                    String id) {
+        this.nameService = nameService;
+        this.rentType = rentType;
+        this.standardService = standardService;
+        this.floor = floor;
+        this.areaUse = areaUse;
+        this.feeRent = feeRent;
+        this.maximumCustomer = maximumCustomer;
+        this.id = id;
     }
 
-    public void setIdFacility(String idFacility) {
-        this.idFacility = idFacility;
+
+    public int getMaintain() {
+        return maintain;
+    }
+
+    public void setMaintain(int maintain) {
+        this.maintain = maintain;
     }
 
     public String getNameService() {
@@ -36,51 +57,72 @@ public abstract class Facility {
         this.nameService = nameService;
     }
 
-    public int getUsableArea() {
-        return usableArea;
+    public String getRentType() {
+        return rentType;
     }
 
-    public void setUsableArea(int usableArea) {
-        this.usableArea = usableArea;
+    public void setRentType(String rentType) {
+        this.rentType = rentType;
     }
 
-    public int getCost() {
-        return cost;
+    public String getStandardService() {
+        return standardService;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setStandardService(String standardService) {
+        this.standardService = standardService;
     }
 
-    public int getMaxPeople() {
-        return maxPeople;
+    public int getFloor() {
+        return floor;
     }
 
-    public void setMaxPeople(int maxPeople) {
-        this.maxPeople = maxPeople;
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
-    public String getRentalType() {
-        return rentalType;
+    public double getAreaUse() {
+        return areaUse;
     }
 
-    public void setRentalType(String rentalType) {
-        this.rentalType = rentalType;
+    public void setAreaUse(double areaUse) {
+        this.areaUse = areaUse;
+    }
+
+    public int getFeeRent() {
+        return feeRent;
+    }
+
+    public void setFeeRent(int feeRent) {
+        this.feeRent = feeRent;
+    }
+
+    public int getMaximumCustomer() {
+        return maximumCustomer;
+    }
+
+    public void setMaximumCustomer(int maximumCustomer) {
+        this.maximumCustomer = maximumCustomer;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return
-                "Facility{" +
-                "idFacility=" + idFacility +
-                ", nameService='" + nameService + '\'' +
-                ", usableArea=" + usableArea +
-                ", cost=" + cost +
-                ", maxPeople=" + maxPeople +
-                ", rentalType='" + rentalType + '\'' +
-                '}';
+        return "[" +
+                "nameService = " + nameService + '\'' +
+                ", rentType = " + rentType + '\'' +
+                ", areaUse = " + areaUse +
+                ", feeRent = " + feeRent +
+                ", maximumCustomer = " + maximumCustomer +
+                ", id = " + id;
     }
-    public String getLine(){
-        return idFacility+ "," +nameService+ "," +usableArea+ "," +cost+ "," +maxPeople+ "," +rentalType;
-    }
+
+    public abstract String getLine();
 }

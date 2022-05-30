@@ -1,35 +1,21 @@
 package case_study.models.person;
 
 public abstract class Person {
-    private int id;
-    private String name;
-    private String dateOfBirth;
-    private String sex;
-    private int numCMND;// idCard
-    private int phoneNum;
-    private String email;
-    private String address;
+    private String name, dateOfBirth, gender, email, phoneNumber, idCardNumber;
 
-    public Person() {
-    }
+    public Person(String name,
+                  String dateOfBirth,
+                  String gender,
+                  String email,
+                  String idCardNumber,
+                  String phoneNumber) {
 
-    public Person(int id, String name, String dateOfBirth, String sex, int numCMND, int phoneNum, String email, String address) {
-        this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.sex = sex;
-        this.numCMND = numCMND;
-        this.phoneNum = phoneNum;
+        this.gender = gender;
         this.email = email;
-        this.address = address;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.idCardNumber = idCardNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -48,28 +34,12 @@ public abstract class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public int getNumCMND() {
-        return numCMND;
-    }
-
-    public void setNumCMND(int numCMND) {
-        this.numCMND = numCMND;
-    }
-
-    public int getPhoneNum() {
-        return phoneNum;
-    }
-
-    public void setPhoneNum(int phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getEmail() {
@@ -80,30 +50,40 @@ public abstract class Person {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getIdCardNumber() {
+        return idCardNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
         return "[" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", sex='" + sex + '\'' +
-                ", numCMND=" + numCMND +
-                ", phoneNum=" + phoneNum +
-                ", email='" + email + '\'' +
-                ", address='" + address + ", ";
+                "name = " + name + '\'' +
+                ", date of birth = '" + dateOfBirth + '\'' +
+                ", gender = '" + gender + '\'' +
+                ", email = '" + email + '\'' +
+                ", id card Number = " + idCardNumber +
+                ", phone number = " + phoneNumber;
     }
 
-    public String getLine() {
-
-        return id + "," + name + "," + dateOfBirth + "," + sex + "," + numCMND + "," + phoneNum + "," + email + "," + address;
+    public String getLine(){
+        String line = name + "," +
+                dateOfBirth + "," +
+                gender + "," +
+                email + "," +
+                idCardNumber + "," +
+                phoneNumber;
+        return line;
     }
 }
-

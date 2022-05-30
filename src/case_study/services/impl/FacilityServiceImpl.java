@@ -5,223 +5,169 @@ import case_study.models.facility.House;
 import case_study.models.facility.Room;
 import case_study.models.facility.Villa;
 import case_study.services.FacilityService;
+import case_study.services.regex.FacilityRegex;
 import case_study.utils.ReadAndWrite;
-import case_study.utils.RegexData;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
-    //triển khai Implemen
-    public static final String REGEX_STR = "[A-Z][a-z]+";
-    public static final String REGEX_ID_VILLA = "(SVVL)[-][\\d]{4}";
-    public static final String REGEX_ID_HOUSE = "(SVHO)[-][\\d]{4}";
-    public static final String REGEX_ID_ROOM = "(SVRO)[-][\\d]{4}";
-    public static final String REGEX_AMOUNT = "^[1-9]|([1][0-9])|(20)$";
-    public static final String REGEX_INT = "^[1-9]|([1][0-9])$";
-    public static final String REGEX_AREA = "^[3-9]\\d|[1-9]\\d{2,}$";
-
-    static Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
     public Scanner scanner = new Scanner(System.in);
-    public Map<Facility,Integer>getFacilityIntegerMap() {
-        return facilityIntegerMap;
+    public static LinkedHashMap<Facility, Integer> facilityList = getFacilityList();
+
+    public static LinkedHashMap<Facility, Integer> getFacilityList() {
+        facilityList = new LinkedHashMap<>();
+        List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\Facility.csv");
+        for (String[] item : list) {
+            if (item[0].equals("Villa")) {
+                facilityList.put(new Villa(item[0],
+                        item[1],
+                        item[2],
+                        Integer.parseInt(item[3]),
+                        Double.parseDouble(item[4]),
+                        Integer.parseInt(item[5]),
+                        Integer.parseInt(item[6]),
+                        item[7],
+                        Double.parseDouble(item[8])), Integer.parseInt(item[9]));
+            } else if (item[0].equals("House")) {
+                facilityList.put(new House(item[0],
+                        item[1],
+                        item[2],
+                        Integer.parseInt(item[3]),
+                        Double.parseDouble(item[4]),
+                        Integer.parseInt(item[5]),
+                        Integer.parseInt(item[6]),
+                        item[7]), Integer.parseInt(item[8]));
+            } else if (item[0].equals("Room")) {
+                facilityList.put(new Room(item[0],
+                        item[1],
+                        Double.parseDouble(item[2]),
+                        Integer.parseInt(item[3]),
+                        Integer.parseInt(item[4]),
+                        item[5],
+                        item[6]), Integer.parseInt(item[7]));
+            }
+        }
+        return facilityList;
+    }
+
+    public static Facility create(String nameSv, LinkedHashMap<Facility, Integer> facilityList) {
+
+        System.out.println("Nhập têm");
+        String name = FacilityRegex.name();
+
+        System.out.println("Nhập kiểu thuê");
+        String rentType = FacilityRegex.rentType();
+
+        System.out.println("Nhập diện tích sử dụng");
+        double areaUse = FacilityRegex.areaUse();
+
+        System.out.println("Nhập chi phí thuê");
+        int feeRent = FacilityRegex.feeRent();
+
+        System.out.println("Nhập số người tối đa");
+        int maximumCustomer = FacilityRegex.maximumCustomer();
+
+        if (nameSv.equals("Villa")) {
+            System.out.println("Nhập id facility");
+            String id = FacilityRegex.id(facilityList, nameSv);
+
+            System.out.println("Nhập diện tích hồ bơi");
+            double sizePool = FacilityRegex.sizePool();
+
+            System.out.println("Nhập số tầng");
+            int floor = FacilityRegex.floor();
+
+            System.out.println("Nhập tiêu chuẩn phòng");
+            String standardService = FacilityRegex.standardService();
+
+            Villa villa = new Villa(name, rentType, standardService, floor, areaUse, feeRent, maximumCustomer, id, sizePool);
+            return villa;
+        } else if (nameSv.equals("House")) {
+            System.out.println("Nhập id facility");
+            String id = FacilityRegex.id(facilityList, nameSv);
+
+            System.out.println("Nhập số tầng");
+            int floor = FacilityRegex.floor();
+
+            System.out.println("Nhập tiêu chuẩn phòng");
+            String standardService = FacilityRegex.standardService();
+
+            House house = new House(name, rentType, standardService, floor, areaUse, feeRent, maximumCustomer, id);
+            return house;
+        } else {
+            System.out.println("Nhập id facility");
+            String id = FacilityRegex.id(facilityList, nameSv);
+
+            System.out.println("Nhập dịch vụ miễn phí");
+            String freeSv = FacilityRegex.freeService();
+
+            Room room = new Room(name, rentType, areaUse, feeRent, maximumCustomer, id, freeSv);
+            return room;
+        }
     }
 
     @Override
-    public void display() throws IOException {
-//        facilityIntegerMap.clear();
-        Villa villa;
-        List<String[]> listStrVl = ReadAndWrite.readFile("src\\case_study\\data\\Villa.csv");
-        for (String[] item : listStrVl) {
-            villa = new Villa(item[0],
-                    item[1],
-                    Integer.parseInt(item[2])
-                    , Integer.parseInt(item[3]),
-                    Integer.parseInt(item[4]),
-                    item[5],
-                    item[6],
-                    Integer.parseInt(item[7]),
-                    Integer.parseInt(item[8]));
-            System.out.println(villa);
-        }
-        House house;
-        List<String[]> listStrHo = ReadAndWrite.readFile("src\\case_study\\data\\House.csv");
-        for (String[] item : listStrHo) {
-            house = new House(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3]), Integer.parseInt(item[4]),
-                    item[5], Integer.parseInt(item[6]), Integer.parseInt(item[7]));
-            System.out.println(house);
-        }
-        Room room;
-        List<String[]> listStrRo = ReadAndWrite.readFile("src\\case_study\\data\\House.csv");
-        for (String[] item : listStrRo) {
-            room = new Room(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3]), Integer.parseInt(item[4]),
-                    item[5], item[6]);
-            System.out.println(room);
-        }
-        for (Map.Entry<Facility,Integer> item: facilityIntegerMap.entrySet()) {
-            System.out.println(item.getKey()+ " Số lần thuê " + item.getValue());
+    public void display() {
+        facilityList = getFacilityList();
+        try {
+            for (Map.Entry<Facility, Integer> element : facilityList.entrySet()) {
+                System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "]");
+            }
+        } catch (Exception e) {
+            System.out.println("danh sách là 0");
         }
     }
-
 
     @Override
     public void displayMaintain() {
+        facilityList = getFacilityList();
+        System.out.println("--------------Maintain facility ---------------");
+        int count = 0;
+        for (Map.Entry<Facility, Integer> element : facilityList.entrySet()) {
+            if (element.getValue() >= 5) {
+                System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "]");
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("không cần bảo trì");
+        }
     }
 
     @Override
     public void addNewVilla() {
+        facilityList = getFacilityList();
+        Villa villa = (Villa) create("Villa", facilityList);
 
-        String idFacility = inputIDVL();
-        String nameService = inputName();
-        int usableArea = Integer.parseInt(inputAREA());
-        int cost = Integer.parseInt(inputTotalPay());
-        int maxPeople = Integer.parseInt(inputPeople());
-        String rentalType = inputRentalType();
-        String roomStandardVilla = inputStandardVilla();
-        int poolArea = Integer.parseInt(inputUsePool());
-        int numberFloorsVilla = Integer.parseInt(inputFloorsVilla());
-        Villa villa = new Villa(idFacility,
-                nameService,
-                usableArea,
-                cost,
-                maxPeople,
-                rentalType,
-                roomStandardVilla,
-                poolArea,
-                numberFloorsVilla);
-        facilityIntegerMap.put(villa, 0);
-        String line = idFacility + "," + nameService + "," + usableArea + "," + cost + "," + maxPeople + "," + rentalType + "," + roomStandardVilla + "," + poolArea + "," + numberFloorsVilla;
-        ReadAndWrite.writeFile("src\\case_study\\data\\Villa.csv", villa.getLine() + "0");
-        System.out.println("Da them villa thanh cong");
-    }
-
-    private String inputIDVL() {
-        System.out.println("Nhập ID");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_ID_VILLA, "Bạn đã nhập sai định dạng, định dạng đúng là SVXX-YYYY. Villa là VL, " + " House  là HO, " + " Room là RO ");
-    }
-
-    private String inputName() {
-        System.out.println("Nhập tên dịch vụ");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_STR, "Bạn đã nhập sai định dạng, Tên dịch vụ phải viết hoa ký tự đầu, các ký tự sau là ký tự bình thường ");
-    }
-
-    private String inputAREA() {
-        System.out.println("Nhập diện tích");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_AREA, "Bạn đã nhập sai định dạng, Diện tích sử dụng và diện tích hồ bơi phải là số thực lớn hơn 30m2 ");
-    }
-
-    private String inputTotalPay() {
-        System.out.println("Nhập giá tiền");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_INT, "Bạn đã nhập sai định dạng, Giá tiền  phải là số dương ");
-    }
-
-    private String inputPeople() {
-        System.out.println("Số người tối đa");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_AMOUNT, "Số lượng người tối đa phải >0 và nhỏ hơn <20");
-    }
-
-    private String inputRentalType() {
-        System.out.println("Nhập kiểu thuê: ");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_STR, "Bạn đã nhập sai định dạng, Kiểu thuê  chuẩn hóa dữ liệu giống tên dịch vụ ");
-    }
-
-    private String inputStandardVilla() {
-        System.out.println("Nhập tiêu chuẩn phòng: ");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_STR, "Bạn đã nhập sai định dạng, Tiêu chuẩn phòng chuẩn hóa dữ liệu giống tên dịch vụ ");
-    }
-
-    private String inputUsePool() {
-        System.out.println("Nhập diện tích hồ bơi");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_AREA, "Bạn đã nhập sai định dạng, Diện tích sử dụng và diện tích hồ bơi phải là số thực lớn hơn 30m2  ");
-    }
-
-    private String inputFloorsVilla() {
-        System.out.println("Nhập số tầng: ");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_INT, "Bạn đã nhập sai định dạng, Số tầng phải là số nguyên dương.");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", villa.getLine() + ",0");
+        System.out.println("thêm thành công");
     }
 
     @Override
     public void addNewHouse() {
-//        System.out.println("Nhập Id Facility");
-        String idFacility = inputIDHO();
+        facilityList = getFacilityList();
+        House house = (House) create("House", facilityList);
 
-        System.out.println("Nhập tên Service");
-        String nameService = scanner.nextLine();
-
-        System.out.println("Nhập diện tích sử dụng");
-        int usableArea = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập giá tiền");
-        int cost = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập số người tối đa");
-        int maxPeople = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập kiểu thuê");
-        String rentalType = scanner.nextLine();
-
-        System.out.println("Nhập tiêu chuẩn phòng");
-        int roomStandardHouse = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập số tầng");
-        int numberFloorsHouse = Integer.parseInt(scanner.nextLine());
-
-        House house = new House(idFacility,
-                nameService,
-                usableArea,
-                cost,
-                maxPeople,
-                rentalType,
-                roomStandardHouse,
-                numberFloorsHouse);
-        facilityIntegerMap.put(house, 0);
-        ReadAndWrite.writeFile("src\\case_study\\data\\House.csv", house.getLine() + "0");
-        System.out.println("Đã thêm house thành công");
-    }
-
-    private String inputIDHO() {
-        System.out.println("Nhập ID");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_ID_HOUSE, "Bạn đã nhập sai định dạng, định dạng đúng là SVXX-YYYY. Villa là VL, " + " House  là HO, " + " Room là RO ");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", house.getLine() + ",0");
+        System.out.println("thêm thành công");
     }
 
     @Override
     public void addNewRoom() {
-        System.out.println("Nhập Id Facility");
-        String idFacility = inputIDRO();
+        Room room = (Room) create("Room", facilityList);
 
-        System.out.println("Nhập tên Service");
-        String nameService = scanner.nextLine();
-
-        System.out.println("Nhập diện tích sử dụng");
-        int usableArea = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập giá tiền");
-        int cost = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập số người tối đa");
-        int maxPeople = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Nhập kiểu thuê");
-        String rentalType = scanner.nextLine();
-
-        System.out.println("Nhập Dịch vụ miễn phí");
-        String serviceFree = scanner.nextLine();
-
-        Room room = new Room(idFacility,
-                nameService,
-                usableArea,
-                cost,
-                maxPeople,
-                rentalType,
-                serviceFree);
-        facilityIntegerMap.put(room, 0);
-        ReadAndWrite.writeFile("src\\case_study\\data\\Room.csv",room.getLine() + "0");
-        System.out.println("Đã thêm Room thành công");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", room.getLine() + ",0");
+        System.out.println("thêm thành công");
     }
 
-    private String inputIDRO() {
-        System.out.println("Nhập ID");
-        return RegexData.regexStr(scanner.nextLine(), REGEX_ID_ROOM, "Bạn đã nhập sai định dạng, định dạng đúng là SVXX-YYYY. Villa là VL, " + " House  là HO, " + " Room là RO ");
+    public static void writeFacilityList(LinkedHashMap<Facility, Integer> facility) {
+
+        File file = new File("src\\case_study\\data\\facility.csv");
+        file.delete();
+
+        for (Map.Entry<Facility, Integer> element : facility.entrySet()) {
+            ReadAndWrite.write("src\\case_study\\data\\facility.csv", element.getKey().getLine() + "," + element.getValue());
+        }
     }
 }
-

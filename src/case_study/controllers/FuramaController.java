@@ -1,5 +1,6 @@
 package case_study.controllers;
 
+import case_study.services.impl.BookingServiceImpl;
 import case_study.services.impl.CustomerServiceImpl;
 import case_study.services.impl.EmployeeServiceImpl;
 import case_study.services.impl.FacilityServiceImpl;
@@ -25,7 +26,7 @@ public class FuramaController {
 
             Scanner input = new Scanner(System.in);
             try {
-                 choice = Integer.parseInt(input.nextLine());
+                choice = Integer.parseInt(input.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Bạn đã nhập sai định dạng vui lòng nhập lại: ");
             }
@@ -51,7 +52,7 @@ public class FuramaController {
         }
     }
 
-    public static void displayEmployee() throws IOException {
+    public static void displayEmployee() {
         EmployeeServiceImpl employeeServiceimpl = new EmployeeServiceImpl();
         boolean check = true;
         int choice = 0;
@@ -68,14 +69,12 @@ public class FuramaController {
                 System.out.println("Bạn đã nhập sai định dạng vui lòng nhập lại: ");
             }
             switch (choice) {
-                case 1: {
+                case 1:
                     employeeServiceimpl.display();
                     break;
-                }
-                case 2: {
-                    employeeServiceimpl.addNew();
+                case 2:
+                    employeeServiceimpl.add();
                     break;
-                }
                 case 3:
                     employeeServiceimpl.edit();
                 case 4:
@@ -85,10 +84,10 @@ public class FuramaController {
     }
 
 
-    public static void displayCustomer() throws IOException {
+    public static void displayCustomer() {
         CustomerServiceImpl customerServiceimpl = new CustomerServiceImpl();
         boolean check = true;
-        int choice= 0;
+        int choice = 0;
         while (check) {
             System.out.println("1: Display list customers ");
             System.out.println("2: Add new customers ");
@@ -102,21 +101,17 @@ public class FuramaController {
                 System.out.println("Bạn đã nhập sai định dạng vui lòng nhập lại: ");
             }
             switch (choice) {
-                case 1: {
+                case 1:
                     customerServiceimpl.display();
                     break;
-                }
-                case 2: {
-                    customerServiceimpl.addNew();
+                case 2:
+                    customerServiceimpl.add();
                     break;
-                }
-                case 3: {
+                case 3:
                     customerServiceimpl.edit();
                     break;
-                }
-                case 4: {
+                case 4:
                     return;
-                }
             }
         }
     }
@@ -147,6 +142,8 @@ public class FuramaController {
                     break;
                 }
                 case 3: {
+                    facilityServiceimpl.displayMaintain();
+                    break;
                 }
                 case 4: {
                     return;
@@ -193,6 +190,7 @@ public class FuramaController {
     }
 
     public static void displayBooking() {
+        BookingServiceImpl bookingService = new BookingServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {
@@ -210,9 +208,19 @@ public class FuramaController {
                 System.out.println("Bạn đã nhập sai định dạng vui lòng nhập lại: ");
             }
             switch (choice) {
-                case 1: {
+                case 1:
+                    bookingService.add();
+                    break;
 
-                }
+                case 2:
+                    bookingService.display();
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    return;
+
             }
         }
     }
@@ -232,9 +240,10 @@ public class FuramaController {
                 System.out.println("Bạn đã nhập sai định dạng vui lòng nhập lại: ");
             }
             switch (choice) {
-                case 1: {
-
-                }
+                case 1:
+                case 2:
+                case 3:
+                    return;
             }
         }
     }
