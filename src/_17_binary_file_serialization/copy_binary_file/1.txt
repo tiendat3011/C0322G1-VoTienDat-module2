@@ -1,1 +1,0 @@
-�� sr java.util.ArrayListx����a� I sizexp   w   sr B_17_binary_file_serialization.ProductManagerSaveBinaryFile.Product� �dÓ I idI priceL manufacturert Ljava/lang/String;L nameq ~ xp     �t Applet Iphonesq ~      �t Mit XiaoMisq ~      �t HKt HK Phonesq ~      �t SSt SamSungsq ~       t sadt sadax

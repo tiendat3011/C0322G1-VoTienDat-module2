@@ -16,17 +16,20 @@ public class RunMain {
                 int c = Integer.parseInt(scanner.nextLine());
                 check(a, b, c);
                 break;
+
             } catch (IllegalTriangleException e) {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Phải nhập số nguyên");
+            }catch (NegativeArraySizeException e){
+                System.out.println("Không được nhập số âm");
             }
         }
     }
 
     private static void check(int a, int b, int c) throws IllegalTriangleException {
         if (a < 0 || b < 0 || c < 0) {
-            throw new IllegalTriangleException("số âm không phải là cạnh của tam giác");
+            throw new NegativeArraySizeException();
         } else if (a + b <= c || a + c <= b || b + c <= a) {
             throw new IllegalTriangleException("Tổng 2 cạnh bé hơn cạnh còn lại. mời nhập lại");
         } else {
