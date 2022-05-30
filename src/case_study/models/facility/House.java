@@ -49,4 +49,7 @@ public class House extends Facility {
                 ", numberFloorsHouse=" + numberFloorsHouse +
                 '}';
     }
+    public String getLine(){
+        return super.toString()+ "," +roomStandardHouse+ "," +numberFloorsHouse;
+    }
 }

@@ -5,7 +5,7 @@ public abstract class Person {
     private String name;
     private String dateOfBirth;
     private String sex;
-    private int numCMND;
+    private int numCMND;// idCard
     private int phoneNum;
     private String email;
     private String address;
@@ -13,7 +13,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(int id, String name, String dateOfBirth,String sex, int numCMND, int phoneNum, String email, String address) {
+    public Person(int id, String name, String dateOfBirth, String sex, int numCMND, int phoneNum, String email, String address) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -99,6 +99,11 @@ public abstract class Person {
                 ", phoneNum=" + phoneNum +
                 ", email='" + email + '\'' +
                 ", address='" + address + ", ";
+    }
+
+    public String getLine() {
+
+        return id + "," + name + "," + dateOfBirth + "," + sex + "," + numCMND + "," + phoneNum + "," + email + "," + address;
     }
 }
 

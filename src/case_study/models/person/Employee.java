@@ -63,4 +63,7 @@ public class Employee extends Person {
                 ", salary=" + salary +
                 ']';
     }
+    public String getLine(){
+        return super.toString()+ "," +lever+ "," +position+ "," +salary;
+    }
 }

@@ -1,7 +1,7 @@
 package case_study.models.facility;
 
 public abstract class Facility {
-    private String idFacility;
+    private String idFacility;// sua lai
     private String nameService;
     private int usableArea;
     private int cost;
@@ -79,5 +79,8 @@ public abstract class Facility {
                 ", maxPeople=" + maxPeople +
                 ", rentalType='" + rentalType + '\'' +
                 '}';
+    }
+    public String getLine(){
+        return idFacility+ "," +nameService+ "," +usableArea+ "," +cost+ "," +maxPeople+ "," +rentalType;
     }
 }

@@ -10,10 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeServiceimpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private static List<Employee> employeeList = new ArrayList<>();
+    private static List<Employee> employeeList;// lm vs static thi` k can file va ng lai>> xoa di
     private static Scanner scanner = new Scanner(System.in);
+
+    public static List<Employee> getEmployeeList() throws IOException {
+        List<Employee> employeeList = new ArrayList<>();
+        List<String[]> listStr = ReadAndWrite.readFile("src\\case_study\\data\\Employee.csv");
+        for (String[] item : listStr) {
+            Employee employee = new Employee(Integer.parseInt(
+                    item[0]),
+                    item[1],
+                    item[2],
+                    item[3],
+                    Integer.parseInt(item[4]),
+                    Integer.parseInt(item[5]),
+                    item[6],
+                    item[7],
+                    item[8],
+                    item[9],
+                    Integer.parseInt(item[10]));
+            System.out.println(employee);
+        }
+        return employeeList;
+    }
 
     public static final String BIRTHDAY = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)" +
             "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)" +
@@ -23,22 +44,15 @@ public class EmployeeServiceimpl implements EmployeeService {
     @Override
 
     public void display() throws IOException {
-           List<String[]> listStr =ReadAndWrite.readFile("src\\case_study\\data\\Employee.csv");
-
-        for (String[] item  : listStr) {
-
-           Employee employee= new Employee(Integer.parseInt(item[0]),item[1],item[2],item[3],Integer.parseInt(item[4]),
-                    Integer.parseInt(item[5]),item[6],item[7],item[8],item[9],Integer.parseInt(item[10]));
-            System.out.println(employee);
+        employeeList = getEmployeeList();
+        for (Employee item : employeeList) {
+            System.out.println(item);
         }
-//           for (Employee employee : employeeList) {
-//            System.out.println(employee.toString());
-//        }
-
     }
 
     @Override
-    public void addNew() {
+    public void addNew() throws IOException {
+        List<Employee> employeeList =  getEmployeeList() ;
         System.out.println("Nhập Id");
         int id = Integer.parseInt(scanner.nextLine());
 
@@ -46,7 +60,7 @@ public class EmployeeServiceimpl implements EmployeeService {
         String name = scanner.nextLine();
 
         System.out.println("Nhập ngày sinh");
-        String dateOfBirth = RegexData.regexAge(scanner.nextLine(),BIRTHDAY);
+        String dateOfBirth = RegexData.regexAge(scanner.nextLine(), BIRTHDAY);
 
         System.out.println("Nhập giới tính");
         String sex = scanner.nextLine();
@@ -71,6 +85,7 @@ public class EmployeeServiceimpl implements EmployeeService {
 
         System.out.println("Nhập lương");
         int salary = Integer.parseInt(scanner.nextLine());
+        List<String> stringList =  new ArrayList<>();
 
         Employee employee = new Employee(id,
                 name,
@@ -84,8 +99,8 @@ public class EmployeeServiceimpl implements EmployeeService {
                 position,
                 salary);
         employeeList.add(employee);
-        String line = id + "," + name+","+dateOfBirth+","+sex+","+numCMND+","+phoneNum+","+email+","+address+","+lever+","+position+","+salary;
-        ReadAndWrite.writerFile("src\\case_study\\data\\Employee.csv",line);
+
+        ReadAndWrite.writeFile("src\\case_study\\data\\Employee.csv",employee.getLine());
         System.out.println("Da them thanh cong");
     }
 

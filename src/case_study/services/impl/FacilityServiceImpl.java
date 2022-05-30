@@ -9,24 +9,23 @@ import case_study.utils.ReadAndWrite;
 import case_study.utils.RegexData;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
-public class FacilityServiceimpl implements FacilityService {
+public class FacilityServiceImpl implements FacilityService {
     //triển khai Implemen
     public static final String REGEX_STR = "[A-Z][a-z]+";
     public static final String REGEX_ID_VILLA = "(SVVL)[-][\\d]{4}";
     public static final String REGEX_ID_HOUSE = "(SVHO)[-][\\d]{4}";
     public static final String REGEX_ID_ROOM = "(SVRO)[-][\\d]{4}";
-
     public static final String REGEX_AMOUNT = "^[1-9]|([1][0-9])|(20)$";
     public static final String REGEX_INT = "^[1-9]|([1][0-9])$";
     public static final String REGEX_AREA = "^[3-9]\\d|[1-9]\\d{2,}$";
 
-    private static Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
+    static Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
     public Scanner scanner = new Scanner(System.in);
+    public Map<Facility,Integer>getFacilityIntegerMap() {
+        return facilityIntegerMap;
+    }
 
     @Override
     public void display() throws IOException {
@@ -34,8 +33,15 @@ public class FacilityServiceimpl implements FacilityService {
         Villa villa;
         List<String[]> listStrVl = ReadAndWrite.readFile("src\\case_study\\data\\Villa.csv");
         for (String[] item : listStrVl) {
-            villa = new Villa(item[0], item[1], Integer.parseInt(item[2]), Integer.parseInt(item[3]), Integer.parseInt(item[4]),
-                    item[5], item[6], Integer.parseInt(item[7]), Integer.parseInt(item[8]));
+            villa = new Villa(item[0],
+                    item[1],
+                    Integer.parseInt(item[2])
+                    , Integer.parseInt(item[3]),
+                    Integer.parseInt(item[4]),
+                    item[5],
+                    item[6],
+                    Integer.parseInt(item[7]),
+                    Integer.parseInt(item[8]));
             System.out.println(villa);
         }
         House house;
@@ -52,12 +58,11 @@ public class FacilityServiceimpl implements FacilityService {
                     item[5], item[6]);
             System.out.println(room);
         }
+        for (Map.Entry<Facility,Integer> item: facilityIntegerMap.entrySet()) {
+            System.out.println(item.getKey()+ " Số lần thuê " + item.getValue());
+        }
     }
 
-//            for (Map.Entry<Facility, Integer> element : facilityIntegerMap.entrySet()) {
-//                System.out.println(element.getKey() + " So lan thue " + element.getValue());
-//            }
-//    }
 
     @Override
     public void displayMaintain() {
@@ -66,25 +71,15 @@ public class FacilityServiceimpl implements FacilityService {
     @Override
     public void addNewVilla() {
 
-//        System.out.println("Nhập Id Facility");
         String idFacility = inputIDVL();
-//        System.out.println("Nhập tên Service");
         String nameService = inputName();
-//        System.out.println("Nhập diện tích sử dụng");
         int usableArea = Integer.parseInt(inputAREA());
-//        System.out.println("Nhập giá tiền");
         int cost = Integer.parseInt(inputTotalPay());
-//        System.out.println("Nhập số người tối đa");
         int maxPeople = Integer.parseInt(inputPeople());
-//        System.out.println("Nhập kiểu thuê");
         String rentalType = inputRentalType();
-//        System.out.println("Nhập tiêu chuẩn phòng");
         String roomStandardVilla = inputStandardVilla();
-//        System.out.println("Nhập diện tích hồ bơi");
         int poolArea = Integer.parseInt(inputUsePool());
-//        System.out.println("Nhập số tầng");
         int numberFloorsVilla = Integer.parseInt(inputFloorsVilla());
-
         Villa villa = new Villa(idFacility,
                 nameService,
                 usableArea,
@@ -96,7 +91,7 @@ public class FacilityServiceimpl implements FacilityService {
                 numberFloorsVilla);
         facilityIntegerMap.put(villa, 0);
         String line = idFacility + "," + nameService + "," + usableArea + "," + cost + "," + maxPeople + "," + rentalType + "," + roomStandardVilla + "," + poolArea + "," + numberFloorsVilla;
-        ReadAndWrite.writerFile("src\\case_study\\data\\Villa.csv", line);
+        ReadAndWrite.writeFile("src\\case_study\\data\\Villa.csv", villa.getLine() + "0");
         System.out.println("Da them villa thanh cong");
     }
 
@@ -180,8 +175,7 @@ public class FacilityServiceimpl implements FacilityService {
                 roomStandardHouse,
                 numberFloorsHouse);
         facilityIntegerMap.put(house, 0);
-        String line = idFacility + "," + nameService + "," + usableArea + "," + cost + "," + maxPeople + "," + rentalType + "," + roomStandardHouse + "," + numberFloorsHouse;
-        ReadAndWrite.writerFile("src\\case_study\\data\\House.csv", line);
+        ReadAndWrite.writeFile("src\\case_study\\data\\House.csv", house.getLine() + "0");
         System.out.println("Đã thêm house thành công");
     }
 
@@ -221,8 +215,7 @@ public class FacilityServiceimpl implements FacilityService {
                 rentalType,
                 serviceFree);
         facilityIntegerMap.put(room, 0);
-        String line = idFacility + "," + nameService + "," + usableArea + "," + cost + "," + maxPeople + "," + rentalType + "," + serviceFree;
-        ReadAndWrite.writerFile("src\\case_study\\data\\Room.csv", line);
+        ReadAndWrite.writeFile("src\\case_study\\data\\Room.csv",room.getLine() + "0");
         System.out.println("Đã thêm Room thành công");
     }
 

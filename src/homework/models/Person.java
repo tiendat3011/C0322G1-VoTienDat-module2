@@ -63,6 +63,7 @@ public abstract class Person {
     }
 
     public String getLine() {
+
         return id + "," + name + "," + age + "," + gender;
     }
 }

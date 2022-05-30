@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerServiceimpl implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
     private static List<Customer> customerList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
 
     @Override
     public void display() throws IOException {
-        List<String[]> listStr =ReadAndWrite.readFile("src\\case_study\\data\\Customer.csv");
+        List<String[]> listStr = ReadAndWrite.readFile("src\\case_study\\data\\Customer.csv");
         // đ biết lluon . nhưng bắt buộc phải clear.ok ?
 //            employeeList.clear();
         for (String[] item  : listStr) {
@@ -77,8 +77,9 @@ public class CustomerServiceimpl implements CustomerService {
                     address,
                     customerType);
             customerList.add(customer);
+            List<String> stringList =  new ArrayList<>();
             String line = id +"," +name +","+ dateOfBirth+","+sex+","+numCMND+","+phoneNum+","+email+","+address+","+customerType;
-            ReadAndWrite.writerFile("src\\case_study\\data\\Customer.csv",line);
+            ReadAndWrite.writeFile("src\\case_study\\data\\Customer.csv",line);
             System.out.println("Đã thêm thành công");
         }
     }

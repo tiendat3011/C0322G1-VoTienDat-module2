@@ -60,4 +60,7 @@ public class Villa extends Facility {
                 ", poolArea=" + poolArea +
                 ", numberFloorsVilla=" + numberFloorsVilla ;
     }
+    public String getLine(){
+        return super.toString()+ "," +roomStandardVilla+ "," +poolArea+ "," +numberFloorsVilla;
+    }
 }

@@ -38,4 +38,7 @@ public class Customer extends Person {
                 "customerType='" + customerType + '\'' +
                 ']';
     }
+    public String getLine(){
+        return super.toString()+ "," +customerType;
+    }
 }

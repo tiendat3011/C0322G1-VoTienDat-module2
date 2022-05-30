@@ -1,8 +1,8 @@
 package case_study.controllers;
 
-import case_study.services.impl.CustomerServiceimpl;
-import case_study.services.impl.EmployeeServiceimpl;
-import case_study.services.impl.FacilityServiceimpl;
+import case_study.services.impl.CustomerServiceImpl;
+import case_study.services.impl.EmployeeServiceImpl;
+import case_study.services.impl.FacilityServiceImpl;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -52,7 +52,7 @@ public class FuramaController {
     }
 
     public static void displayEmployee() throws IOException {
-        EmployeeServiceimpl employeeServiceimpl = new EmployeeServiceimpl();
+        EmployeeServiceImpl employeeServiceimpl = new EmployeeServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {
@@ -86,7 +86,7 @@ public class FuramaController {
 
 
     public static void displayCustomer() throws IOException {
-        CustomerServiceimpl customerServiceimpl = new CustomerServiceimpl();
+        CustomerServiceImpl customerServiceimpl = new CustomerServiceImpl();
         boolean check = true;
         int choice= 0;
         while (check) {
@@ -122,7 +122,7 @@ public class FuramaController {
     }
 
     public static void displayFacility() throws IOException {
-        FacilityServiceimpl facilityServiceimpl = new FacilityServiceimpl();
+        FacilityServiceImpl facilityServiceimpl = new FacilityServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {
@@ -156,7 +156,7 @@ public class FuramaController {
     }
 
     public static void addNewFacility() throws IOException {
-        FacilityServiceimpl facilityServiceimpl = new FacilityServiceimpl();
+        FacilityServiceImpl facilityServiceimpl = new FacilityServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {

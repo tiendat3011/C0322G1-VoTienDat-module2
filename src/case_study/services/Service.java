@@ -5,7 +5,7 @@ import java.io.IOException;
 public interface Service {
     void display() throws IOException;
 
-    void addNew();
+    void addNew() throws IOException;
 
     void edit() throws IOException;
 
