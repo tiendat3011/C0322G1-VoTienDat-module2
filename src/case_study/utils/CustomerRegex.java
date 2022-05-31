@@ -1,4 +1,4 @@
-package case_study.services.regex;
+package case_study.utils;
 
 import case_study.models.person.Customer;
 
@@ -34,12 +34,39 @@ public class CustomerRegex {
                 dateTimeCheck(dateOfBirth);
                 break;
             } catch (DateTimeException e) {
-                System.err.println("Kh�ng ?? tu?i");
+                System.err.println("tuổi lớn hơn 18 và bé hơn 100");
             } catch (Exception ignored) {
-                System.err.println("Nh?p sai");
+                System.err.println("Nhập sai định dạng");
             }
         }
         return dateOfBirth;
+    }
+    public static String gender() {
+        String gender = "";
+        boolean checkGender = true;
+        while (checkGender) {
+            int choice = 0;
+            System.out.println("--------Giới tính--------");
+            System.out.println("1. Nam");
+            System.out.println("2. Nữ");
+            System.out.println("Chọn 1>2");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai định dạng");
+            }
+            switch (choice) {
+                case 1:
+                    gender = "Nam";
+                    checkGender = false;
+                    break;
+                case 2:
+                    gender = "Nữ";
+                    checkGender = false;
+                    break;
+            }
+        }
+        return gender;
     }
 
     public static String customerType() {
@@ -52,12 +79,12 @@ public class CustomerRegex {
             System.out.println("3. Member");
             System.out.println("4. Platinum");
             System.out.println("5. Diamond");
-            System.out.println("Input your choice");
+            System.out.println("Chọn 1->5");
             int choice = 0;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.err.println("Nh?p sai");
+                System.err.println("Nhập sai");
                 ;
             }
             switch (choice) {
@@ -98,7 +125,7 @@ public class CustomerRegex {
                 if (id.matches(idRegex)) {
                     break;
                 } else {
-                    System.err.println("Nh?p sai");
+                    System.err.println("Nhập sai vd CUS-XXXX");
                 }
             }
 
@@ -109,7 +136,7 @@ public class CustomerRegex {
                 }
             }
             if (check) {
-                System.out.println("Your is already in list");
+                System.out.println("ID đã cso trong danh sách");
             } else {
                 return id;
             }

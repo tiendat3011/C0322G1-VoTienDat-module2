@@ -1,9 +1,6 @@
 package case_study.controllers;
 
-import case_study.services.impl.BookingServiceImpl;
-import case_study.services.impl.CustomerServiceImpl;
-import case_study.services.impl.EmployeeServiceImpl;
-import case_study.services.impl.FacilityServiceImpl;
+import case_study.services.impl.*;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -82,7 +79,6 @@ public class FuramaController {
             }
         }
     }
-
 
     public static void displayCustomer() {
         CustomerServiceImpl customerServiceimpl = new CustomerServiceImpl();
@@ -191,6 +187,7 @@ public class FuramaController {
 
     public static void displayBooking() {
         BookingServiceImpl bookingService = new BookingServiceImpl();
+        ContactServiceImpl contactService = new ContactServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {
@@ -211,13 +208,18 @@ public class FuramaController {
                 case 1:
                     bookingService.add();
                     break;
-
                 case 2:
                     bookingService.display();
                     break;
                 case 3:
+                    contactService.create();
+                    break;
                 case 4:
+                    contactService.display();
+                    break;
                 case 5:
+                    contactService.edit();
+                    break;
                 case 6:
                     return;
 
@@ -226,6 +228,7 @@ public class FuramaController {
     }
 
     public static void displayPromotion() {
+        PromotionServiceImpl promotionService = new PromotionServiceImpl();
         boolean check = true;
         int choice = 0;
         while (check) {
@@ -241,7 +244,10 @@ public class FuramaController {
             }
             switch (choice) {
                 case 1:
+                    promotionService.displayCustomerUseService();
+                    break;
                 case 2:
+                    promotionService.displayDiscount();
                 case 3:
                     return;
             }

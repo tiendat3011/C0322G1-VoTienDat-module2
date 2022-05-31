@@ -1,4 +1,4 @@
-package case_study.services.regex;
+package case_study.utils;
 
 import case_study.models.person.Employee;
 
@@ -34,12 +34,40 @@ public class EmployeeRegex {
                 dateTimeCheck(dateOfBirth);
                 break;
             } catch (DateTimeException e) {
-                System.err.println("This age of customer can't booking");
+                System.err.println("Độ tuổi này k cần booking");
             } catch (Exception ignored) {
-                System.err.println("Input wrong format");
+                System.err.println("Nhập sai định dạng");
             }
         }
         return dateOfBirth;
+    }
+
+    public static String gender() {
+        String gender = "";
+        boolean checkGender = true;
+        while (checkGender) {
+            int choice = 0;
+            System.out.println("--------Giới tính--------");
+            System.out.println("1. Nam");
+            System.out.println("2. Nữ");
+            System.out.println("Chọn 1>2");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai định dạng");
+            }
+            switch (choice) {
+                case 1:
+                    gender = "Nam";
+                    checkGender = false;
+                    break;
+                case 2:
+                    gender = "Nữ";
+                    checkGender = false;
+                    break;
+            }
+        }
+        return gender;
     }
 
     public static String level() {
@@ -48,32 +76,31 @@ public class EmployeeRegex {
         while (checkLevel) {
             int choice = 0;
             System.out.println("--------Menu--------");
-            System.out.println("1. Trung c?p");
-            System.out.println("2. Cao ??ng");
-            System.out.println("3. ??i H?c");
-            System.out.println("4. Sau ??i h?c");
-            System.out.println("Ch?n 1>4");
+            System.out.println("1. Trung cấp");
+            System.out.println("2. Cao đẳng");
+            System.out.println("3. Đại học");
+            System.out.println("4. Sau đại học");
+            System.out.println("Chọn 1>4");
             try {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.err.println("Nh?p sai ??nh d?ng");
-                ;
+                System.err.println("Nhập sai định dạng");
             }
             switch (choice) {
                 case 1:
-                    level = "Trung c?p";
+                    level = "Trung cấp";
                     checkLevel = false;
                     break;
                 case 2:
-                    level = "Cao ??ng";
+                    level = "Cao Đẳng";
                     checkLevel = false;
                     break;
                 case 3:
-                    level = "??i H?c";
+                    level = "Đại Học";
                     checkLevel = false;
                     break;
                 case 4:
-                    level = "Sau ??i h?c";
+                    level = "Sau Đại học";
                     checkLevel = false;
                     break;
                 default:
@@ -89,42 +116,42 @@ public class EmployeeRegex {
         int choice = 0;
         while (checkPosition) {
             System.out.println("--------Menu--------");
-            System.out.println("1. L? t�n");
-            System.out.println("2. Ph?c v?");
-            System.out.println("3. Chuy�n vi�n");
-            System.out.println("4. Gi�m s�t");
-            System.out.println("5. Qu?n l�");
-            System.out.println("6. Gi�m ??c");
-            System.out.println("Input your choice");
+            System.out.println("1. Lễ tân");
+            System.out.println("2. Phục v?");
+            System.out.println("3. Chuyên viên");
+            System.out.println("4. Giám sát");
+            System.out.println("5. Quản lý");
+            System.out.println("6. Giám đốc");
+            System.out.println("CHọn 1>4");
             try {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.err.println("Input wrong format");
+                System.err.println("Nhập sai định dạng");
                 ;
             }
             switch (choice) {
                 case 1:
-                    position = "L? t�n";
+                    position = "Lễ tân";
                     checkPosition = false;
                     break;
                 case 2:
-                    position = "Ph?c v?";
+                    position = "Phục vụ";
                     checkPosition = false;
                     break;
                 case 3:
-                    position = "Chuy�n vi�n";
+                    position = "Chuyên viên";
                     checkPosition = false;
                     break;
                 case 4:
-                    position = "Gi�m s�t";
+                    position = "Giám sát";
                     checkPosition = false;
                     break;
                 case 5:
-                    position = "Qu?n l�";
+                    position = "Quản lý";
                     checkPosition = false;
                     break;
                 case 6:
-                    position = "Gi�m ??c";
+                    position = "Giám Đốc";
                     checkPosition = false;
                     break;
                 default:
@@ -141,7 +168,7 @@ public class EmployeeRegex {
                 salary = Integer.parseInt(scanner.nextLine());
                 return salary;
             } catch (NumberFormatException e) {
-                System.err.println("Input wrong format");
+                System.err.println("NHập sai định dạng");
                 ;
             }
         }
@@ -157,7 +184,7 @@ public class EmployeeRegex {
                 if (id.matches(idRegex)) {
                     break;
                 } else {
-                    System.err.println("Nh?p sai ??nh d?ng v� d? EPO-XXXX");
+                    System.err.println("Nhập lại vD :  EPO-XXXX");
                 }
             }
 
@@ -168,7 +195,7 @@ public class EmployeeRegex {
                 }
             }
             if (check) {
-                System.out.println("Your is already in list");
+                System.out.println("ID đã có trong list");
             } else {
                 return id;
             }

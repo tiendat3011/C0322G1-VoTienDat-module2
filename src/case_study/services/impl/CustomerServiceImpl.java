@@ -2,7 +2,8 @@ package case_study.services.impl;
 
 import case_study.models.person.Customer;
 import case_study.services.CustomerService;
-import case_study.services.regex.CustomerRegex;
+import case_study.utils.CustomerRegex;
+import case_study.utils.EmployeeRegex;
 import case_study.utils.ReadAndWrite;
 
 import java.io.File;
@@ -12,9 +13,9 @@ import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
     static Scanner scanner = new Scanner(System.in);
-    public static List<Customer> customerList = getCustomerList();
+    public  List<Customer> customerList = getCustomerList();
 
-    public static List<Customer> getCustomerList() {
+    public  List<Customer> getCustomerList() {
         customerList = new LinkedList<>();
         try {
             List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\customers.csv");
@@ -53,8 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
         System.out.println("Nhập ngày sinh");
         String dateOfBirth = CustomerRegex.dateOfBirth();
 
-        System.out.println("Nhập giới tính");
-        String gender = scanner.nextLine();
+//        System.out.println("Nhập giới tính");
+        String gender = CustomerRegex.gender();
 
         System.out.println("Nhập email");
         String email = scanner.nextLine();
@@ -110,8 +111,8 @@ public class CustomerServiceImpl implements CustomerService {
             String dateOfBirth = CustomerRegex.dateOfBirth();
             customerList.get(index).setDateOfBirth(dateOfBirth);
 
-            System.out.println("Nhập giới tính");
-            String gender = scanner.nextLine();
+//            System.out.println("Nhập giới tính");
+            String gender = EmployeeRegex.gender();
             customerList.get(index).setGender(gender);
 
             System.out.println("Nhập email");

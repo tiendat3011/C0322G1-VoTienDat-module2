@@ -5,7 +5,7 @@ import case_study.models.facility.House;
 import case_study.models.facility.Room;
 import case_study.models.facility.Villa;
 import case_study.services.FacilityService;
-import case_study.services.regex.FacilityRegex;
+import case_study.utils.FacilityRegex;
 import case_study.utils.ReadAndWrite;
 
 import java.io.File;
@@ -13,9 +13,8 @@ import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
     public Scanner scanner = new Scanner(System.in);
-    public static LinkedHashMap<Facility, Integer> facilityList = getFacilityList();
-
-    public static LinkedHashMap<Facility, Integer> getFacilityList() {
+    public  LinkedHashMap<Facility, Integer> facilityList = getFacilityList();
+    public  LinkedHashMap<Facility, Integer> getFacilityList() {
         facilityList = new LinkedHashMap<>();
         List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\Facility.csv");
         for (String[] item : list) {
@@ -37,7 +36,8 @@ public class FacilityServiceImpl implements FacilityService {
                         Double.parseDouble(item[4]),
                         Integer.parseInt(item[5]),
                         Integer.parseInt(item[6]),
-                        item[7]), Integer.parseInt(item[8]));
+                        item[7]),
+                        Integer.parseInt(item[8]));
             } else if (item[0].equals("Room")) {
                 facilityList.put(new Room(item[0],
                         item[1],
@@ -51,9 +51,9 @@ public class FacilityServiceImpl implements FacilityService {
         return facilityList;
     }
 
-    public static Facility create(String nameSv, LinkedHashMap<Facility, Integer> facilityList) {
+    public  Facility create(String nameSv, LinkedHashMap<Facility, Integer> facilityList) {
 
-        System.out.println("Nhập têm");
+        System.out.println("Nhập tên dv");
         String name = FacilityRegex.name();
 
         System.out.println("Nhập kiểu thuê");
@@ -115,7 +115,7 @@ public class FacilityServiceImpl implements FacilityService {
                 System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "]");
             }
         } catch (Exception e) {
-            System.out.println("danh sách là 0");
+            System.out.println("");
         }
     }
 
@@ -123,15 +123,14 @@ public class FacilityServiceImpl implements FacilityService {
     public void displayMaintain() {
         facilityList = getFacilityList();
         System.out.println("--------------Maintain facility ---------------");
-        int count = 0;
+//        int count = 0;
         for (Map.Entry<Facility, Integer> element : facilityList.entrySet()) {
             if (element.getValue() >= 5) {
-                System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "]");
-                count++;
+                System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "\n Cần bảo trì]");
+//                count++;
+            }else {
+                System.out.println("Không cần bảo trì");
             }
-        }
-        if (count == 0) {
-            System.out.println("không cần bảo trì");
         }
     }
 
@@ -140,7 +139,7 @@ public class FacilityServiceImpl implements FacilityService {
         facilityList = getFacilityList();
         Villa villa = (Villa) create("Villa", facilityList);
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", villa.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", villa.getLine() + ",0"+"\n");
         System.out.println("thêm thành công");
     }
 
@@ -149,7 +148,7 @@ public class FacilityServiceImpl implements FacilityService {
         facilityList = getFacilityList();
         House house = (House) create("House", facilityList);
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", house.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", house.getLine() + ",0"+"\n");
         System.out.println("thêm thành công");
     }
 
@@ -157,7 +156,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void addNewRoom() {
         Room room = (Room) create("Room", facilityList);
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", room.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", room.getLine() + ",0"+"\n");
         System.out.println("thêm thành công");
     }
 

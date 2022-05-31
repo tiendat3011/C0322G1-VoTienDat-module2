@@ -3,7 +3,6 @@ package case_study.utils;
 import java.io.*;
 import java.util.*;
 
-
 public class ReadAndWrite {
 
     public static void write(String path, String line) {

@@ -1,4 +1,4 @@
-package case_study.services.regex;
+package case_study.utils;
 
 import case_study.models.facility.Facility;
 
@@ -15,7 +15,7 @@ public class FacilityRegex {
         HOUSE = "^SVHO-[0-9]{4}$";
         ROOM = "^SVRO-[0-9]{4}$";
         FIRST_CHARACTER_UPPER = "^[A-Z][\\w]+$";
-        RENT_TYPE = "^(Ngay|Thang|Nam)$";
+        RENT_TYPE = "^(Ngày|Tháng|Năm)$";
     }
 
     public static String name() {
@@ -25,7 +25,7 @@ public class FacilityRegex {
             if (name.matches(FIRST_CHARACTER_UPPER)) {
                 break;
             } else {
-                System.out.println("Your format is wrong");
+                System.out.println("NHập sai định dạng, chữ cái đầu phải viết hoa");
             }
         }
         return name;
@@ -38,7 +38,7 @@ public class FacilityRegex {
             if (rentType.matches(RENT_TYPE)) {
                 break;
             } else {
-                System.out.println("Thu� theo ng�y , th�ng ho?c n?m ?");
+                System.out.println("Thuê theo Ngày | Tháng | Năm >>?");
             }
         }
         return rentType;
@@ -51,7 +51,7 @@ public class FacilityRegex {
             if (standardService.matches(FIRST_CHARACTER_UPPER)) {
                 break;
             } else {
-                System.out.println("Ch? ??u ph?i vi?t hoa");
+                System.out.println("Chữ cái đầu phải viết hoa");
             }
         }
         return standardService;
@@ -75,7 +75,7 @@ public class FacilityRegex {
                 if (id.matches(name)) {
                     break;
                 } else {
-                    System.out.println("nh?p sai vd : SVVl-xxxx Villa l� VL House l� HO Room l� RO ");
+                    System.out.println("nhập sai vd : SVVl-xxxx Villa là VL House là HO Room là RO ");
                 }
             }
 
@@ -86,7 +86,7 @@ public class FacilityRegex {
                 }
             }
             if (check) {
-                System.out.println("Your is already in list");
+                System.out.println("ID đã có trong danh sách");
             } else {
                 return id;
             }
@@ -102,10 +102,10 @@ public class FacilityRegex {
                 if (floor > 0) {
                     break;
                 } else {
-                    System.out.println("s? t?ng l?n h?n 0");
+                    System.out.println("số tầng lớn hơn 0");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Input wrong format");
+                System.err.println("Nhập sai định dạng");
                 ;
             }
         }
@@ -120,10 +120,10 @@ public class FacilityRegex {
                 if (areaUse > 30) {
                     break;
                 } else {
-                    System.err.println("b� nh?t l� 30m2");
+                    System.err.println("bé nhất là 30m2");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Nh�p sai ??nh d?ng");
+                System.err.println("Nhập sai định dạng");
             }
         }
         return areaUse;
@@ -137,10 +137,10 @@ public class FacilityRegex {
                 if (feeRent > 0) {
                     break;
                 } else {
-                    System.out.println("chi ph� thu� > 0");
+                    System.out.println("chi phí thuê > 0");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Nh?p sai ??nh d?ng");
+                System.err.println("Nhập sai định dạng");
             }
         }
         return feeRent;
@@ -154,10 +154,10 @@ public class FacilityRegex {
                 if (maximumCustomer > 0 && maximumCustomer < 20) {
                     break;
                 } else {
-                    System.out.println("S? ng??i t?i ?a l?n h?n 0 v� b� h?n 20");
+                    System.out.println("số người tối đa lớn hơn 0 và bé hơn 20");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Sai ??nh d?ng");
+                System.err.println("Sai định dạng");
                 ;
             }
         }
@@ -172,10 +172,10 @@ public class FacilityRegex {
                 if (sizePool > 30) {
                     break;
                 } else {
-                    System.out.println("Minimum size is 30m2");
+                    System.out.println("nhỏ nhất là 30m2");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Input wrong format");
+                System.err.println("Nhập sai định dạng");
                 ;
             }
         }
@@ -189,7 +189,7 @@ public class FacilityRegex {
             if (freeService.matches(FIRST_CHARACTER_UPPER)) {
                 break;
             } else {
-                System.out.println("Input wrong format");
+                System.out.println("Chữ cái đầu phải viết hoa");
             }
         }
         return freeService;
