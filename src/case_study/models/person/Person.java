@@ -77,7 +77,7 @@ public abstract class Person {
                 ", phone number = " + phoneNumber;
     }
 
-    public String getLine(){
+    public String getLine() {
         String line = name + "," +
                 dateOfBirth + "," +
                 gender + "," +

@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FuramaController {
-    public static void main(String[] args) throws IOException {
-        displayMainMenu();
-    }
-
     public static void displayMainMenu() throws IOException {
         boolean check = true;
         int choice = 0;

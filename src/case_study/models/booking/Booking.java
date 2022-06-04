@@ -1,6 +1,6 @@
 package case_study.models.booking;
 
-public  class Booking {
+public class Booking {
     private int idBooking;
     private String starTime, endTime, customerId, facilityId;
     private String statusContract = "false";
@@ -69,7 +69,7 @@ public  class Booking {
 
     @Override
     public String toString() {
-        return  "[" +
+        return "[" +
                 "idBooking = " + idBooking +
                 ", idCustomerNumber = " + customerId +
                 ", starTime = " + starTime + '\'' +
@@ -78,7 +78,7 @@ public  class Booking {
                 ", status Contract = " + statusContract;
     }
 
-    public String getLine(){
-        return idBooking +","+ starTime +","+ endTime +","+ customerId +"," +facilityId + "," + statusContract;
+    public String getLine() {
+        return idBooking + "," + starTime + "," + endTime + "," + customerId + "," + facilityId + "," + statusContract;
     }
 }

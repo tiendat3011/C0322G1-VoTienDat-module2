@@ -1,11 +1,10 @@
 package case_study.models.facility;
 
-public abstract class Facility{
+public abstract class Facility {
     private String nameService, rentType, standardService, id;
     private int maximumCustomer, floor, feeRent;
     private double areaUse;
     private int maintain = 0;
-
 
     public Facility(String nameService,
                     String rentType,
@@ -39,7 +38,6 @@ public abstract class Facility{
         this.maximumCustomer = maximumCustomer;
         this.id = id;
     }
-
 
     public int getMaintain() {
         return maintain;

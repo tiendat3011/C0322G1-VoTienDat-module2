@@ -1,6 +1,7 @@
 package case_study.utils;
 
 import case_study.models.facility.Facility;
+import case_study.utils.exception.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,39 +20,54 @@ public class FacilityRegex {
     }
 
     public static String name() {
-        String name;
-        while (true) {
+        boolean check = true;
+        String name = null;
+        while (check) {
             name = scanner.nextLine();
-            if (name.matches(FIRST_CHARACTER_UPPER)) {
-                break;
-            } else {
-                System.out.println("NHập sai định dạng, chữ cái đầu phải viết hoa");
+            try {
+                if (name.matches(FIRST_CHARACTER_UPPER)) {
+                    check = false;
+                } else {
+                    throw new NameException("NHập sai định dạng, chữ cái đầu phải viết hoa");
+                }
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
             }
         }
         return name;
     }
 
     public static String rentType() {
-        String rentType;
-        while (true) {
+        boolean check = true;
+        String rentType = null;
+        while (check) {
             rentType = scanner.nextLine();
-            if (rentType.matches(RENT_TYPE)) {
-                break;
-            } else {
-                System.out.println("Thuê theo Ngày | Tháng | Năm >>?");
+            try {
+                if (rentType.matches(RENT_TYPE)) {
+                    check = false;
+                } else {
+                    throw new RentTypeException("Thuê theo Ngày | Tháng | Năm >>?");
+                }
+            } catch (RentTypeException e) {
+                System.out.println(e.getMessage());
             }
         }
         return rentType;
     }
 
     public static String standardService() {
-        String standardService;
-        while (true) {
+        boolean check = true;
+        String standardService = null;
+        while (check) {
             standardService = scanner.nextLine();
-            if (standardService.matches(FIRST_CHARACTER_UPPER)) {
-                break;
-            } else {
-                System.out.println("Chữ cái đầu phải viết hoa");
+            try {
+                if (standardService.matches(FIRST_CHARACTER_UPPER)) {
+                    check = false;
+                } else {
+                    throw new StandardServiceException("Chữ cái đầu phải viết hoa");
+                }
+            } catch (StandardServiceException e) {
+                System.out.println(e.getMessage());
             }
         }
         return standardService;
@@ -95,104 +111,111 @@ public class FacilityRegex {
     }
 
     public static int floor() {
-        int floor;
-        while (true) {
+        boolean check = true;
+        int floor = 0;
+        while (check) {
             try {
                 floor = Integer.parseInt(scanner.nextLine());
                 if (floor > 0) {
-                    break;
+                    check = false;
                 } else {
-                    System.out.println("số tầng lớn hơn 0");
+                    throw new FloorException("số tầng lớn hơn 0");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | FloorException e) {
                 System.err.println("Nhập sai định dạng");
-                ;
             }
         }
         return floor;
     }
 
     public static double areaUse() {
-        double areaUse;
-        while (true) {
+        boolean check = true;
+        double areaUse = 0;
+        while (check) {
             try {
                 areaUse = Double.parseDouble(scanner.nextLine());
                 if (areaUse > 30) {
-                    break;
+                    check = false;
                 } else {
-                    System.err.println("bé nhất là 30m2");
+                    throw new AreaUseException("Lớn hơn 30m2");
                 }
-            } catch (NumberFormatException e) {
-                System.err.println("Nhập sai định dạng");
+            } catch (AreaUseException e) {
+                System.out.println(e.getMessage());
             }
         }
         return areaUse;
     }
 
     public static int feeRent() {
-        int feeRent;
-        while (true) {
+        boolean check = true;
+        int feeRent = 0;
+        while (check) {
             try {
                 feeRent = Integer.parseInt(scanner.nextLine());
                 if (feeRent > 0) {
-                    break;
+                    check = false;
                 } else {
-                    System.out.println("chi phí thuê > 0");
+                    throw new FeeRentException("chi phí thuê > 0");
                 }
-            } catch (NumberFormatException e) {
-                System.err.println("Nhập sai định dạng");
+            } catch (FeeRentException e) {
+                System.out.println(e.getMessage());
             }
         }
         return feeRent;
     }
 
     public static int maximumCustomer() {
-        int maximumCustomer;
-        while (true) {
+        boolean check = true;
+        int maximumCustomer = 0;
+        while (check) {
             try {
                 maximumCustomer = Integer.parseInt(scanner.nextLine());
                 if (maximumCustomer > 0 && maximumCustomer < 20) {
-                    break;
+                    check = false;
                 } else {
-                    System.out.println("số người tối đa lớn hơn 0 và bé hơn 20");
+                    throw new MaximumCustomerException("số người tối đa lớn hơn 0 và bé hơn 20");
                 }
-            } catch (NumberFormatException e) {
-                System.err.println("Sai định dạng");
-                ;
+            } catch (MaximumCustomerException e) {
+                System.out.println(e.getMessage());
             }
         }
         return maximumCustomer;
     }
 
     public static double sizePool() {
-        double sizePool;
-        while (true) {
+        boolean check = true;
+        double sizePool = 0;
+        while (check) {
             try {
                 sizePool = Double.parseDouble(scanner.nextLine());
                 if (sizePool > 30) {
-                    break;
+                    check = false;
                 } else {
-                    System.out.println("nhỏ nhất là 30m2");
+                    throw new SizePoolException("nhỏ nhất là 30m2");
                 }
-            } catch (NumberFormatException e) {
-                System.err.println("Nhập sai định dạng");
-                ;
+            } catch (SizePoolException e) {
+                System.out.println(e.getMessage());
+
             }
         }
         return sizePool;
     }
 
     public static String freeService() {
-        String freeService;
-        while (true) {
+        boolean check = true;
+        String freeService = null;
+        while (check) {
             freeService = scanner.nextLine();
-            if (freeService.matches(FIRST_CHARACTER_UPPER)) {
-                break;
-            } else {
-                System.out.println("Chữ cái đầu phải viết hoa");
+            try {
+                if (freeService.matches(FIRST_CHARACTER_UPPER)) {
+                    check = false;
+                } else {
+                    throw new FreeServiceException("Chữ cái đầu phải viết hoa");
+                }
+            } catch (FreeServiceException e) {
+                System.out.println(e.getMessage());
             }
         }
         return freeService;
     }
 }
-

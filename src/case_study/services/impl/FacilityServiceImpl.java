@@ -8,35 +8,36 @@ import case_study.services.FacilityService;
 import case_study.utils.FacilityRegex;
 import case_study.utils.ReadAndWrite;
 
-import java.io.File;
 import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
     public Scanner scanner = new Scanner(System.in);
-    public  LinkedHashMap<Facility, Integer> facilityList = getFacilityList();
-    public  LinkedHashMap<Facility, Integer> getFacilityList() {
+    public LinkedHashMap<Facility, Integer> facilityList = getFacilityList();
+
+    public LinkedHashMap<Facility, Integer> getFacilityList() {
         facilityList = new LinkedHashMap<>();
-        List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\Facility.csv");
+        List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\facility.csv");
         for (String[] item : list) {
             if (item[0].equals("Villa")) {
                 facilityList.put(new Villa(item[0],
-                        item[1],
-                        item[2],
-                        Integer.parseInt(item[3]),
-                        Double.parseDouble(item[4]),
-                        Integer.parseInt(item[5]),
-                        Integer.parseInt(item[6]),
-                        item[7],
-                        Double.parseDouble(item[8])), Integer.parseInt(item[9]));
+                                item[1],
+                                item[2],
+                                Integer.parseInt(item[3]),
+                                Double.parseDouble(item[4]),
+                                Integer.parseInt(item[5]),
+                                Integer.parseInt(item[6]),
+                                item[7],
+                                Double.parseDouble(item[8])),
+                        Integer.parseInt(item[9]));
             } else if (item[0].equals("House")) {
                 facilityList.put(new House(item[0],
-                        item[1],
-                        item[2],
-                        Integer.parseInt(item[3]),
-                        Double.parseDouble(item[4]),
-                        Integer.parseInt(item[5]),
-                        Integer.parseInt(item[6]),
-                        item[7]),
+                                item[1],
+                                item[2],
+                                Integer.parseInt(item[3]),
+                                Double.parseDouble(item[4]),
+                                Integer.parseInt(item[5]),
+                                Integer.parseInt(item[6]),
+                                item[7]),
                         Integer.parseInt(item[8]));
             } else if (item[0].equals("Room")) {
                 facilityList.put(new Room(item[0],
@@ -51,7 +52,7 @@ public class FacilityServiceImpl implements FacilityService {
         return facilityList;
     }
 
-    public  Facility create(String nameSv, LinkedHashMap<Facility, Integer> facilityList) {
+    public Facility create(String nameSv, LinkedHashMap<Facility, Integer> facilityList) {
 
         System.out.println("Nhập tên dv");
         String name = FacilityRegex.name();
@@ -123,12 +124,10 @@ public class FacilityServiceImpl implements FacilityService {
     public void displayMaintain() {
         facilityList = getFacilityList();
         System.out.println("--------------Maintain facility ---------------");
-//        int count = 0;
         for (Map.Entry<Facility, Integer> element : facilityList.entrySet()) {
             if (element.getValue() >= 5) {
                 System.out.println(element.getKey() + ", số lần thuê = " + element.getValue() + "\n Cần bảo trì]");
-//                count++;
-            }else {
+            } else {
                 System.out.println("Không cần bảo trì");
             }
         }
@@ -139,7 +138,8 @@ public class FacilityServiceImpl implements FacilityService {
         facilityList = getFacilityList();
         Villa villa = (Villa) create("Villa", facilityList);
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", villa.getLine() + ",0"+"\n");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", villa.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\villa.csv", villa.getLine() + ",0");
         System.out.println("thêm thành công");
     }
 
@@ -148,25 +148,17 @@ public class FacilityServiceImpl implements FacilityService {
         facilityList = getFacilityList();
         House house = (House) create("House", facilityList);
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", house.getLine() + ",0"+"\n");
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", house.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\house.csv", house.getLine() + ",0");
         System.out.println("thêm thành công");
     }
 
     @Override
     public void addNewRoom() {
         Room room = (Room) create("Room", facilityList);
+        ReadAndWrite.write("src\\case_study\\data\\facility.csv", room.getLine() + ",0");
+        ReadAndWrite.write("src\\case_study\\data\\room.csv", room.getLine() + ",0");
 
-        ReadAndWrite.write("src\\case_study\\data\\facility.csv", room.getLine() + ",0"+"\n");
         System.out.println("thêm thành công");
-    }
-
-    public static void writeFacilityList(LinkedHashMap<Facility, Integer> facility) {
-
-        File file = new File("src\\case_study\\data\\facility.csv");
-        file.delete();
-
-        for (Map.Entry<Facility, Integer> element : facility.entrySet()) {
-            ReadAndWrite.write("src\\case_study\\data\\facility.csv", element.getKey().getLine() + "," + element.getValue());
-        }
     }
 }

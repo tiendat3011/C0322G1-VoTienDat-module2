@@ -3,6 +3,7 @@ package case_study.services.impl;
 import case_study.models.person.Employee;
 import case_study.services.EmployeeService;
 import case_study.utils.EmployeeRegex;
+import case_study.utils.FacilityRegex;
 import case_study.utils.ReadAndWrite;
 
 import java.io.File;
@@ -12,8 +13,9 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
     public static Scanner scanner = new Scanner(System.in);
-    public  List<Employee> employeeList = getEmployeeList();
-    public  List<Employee> getEmployeeList() {
+    public List<Employee> employeeList = getEmployeeList();
+
+    public List<Employee> getEmployeeList() {
         List<Employee> employeeList = new ArrayList<>();
         List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\employee.csv");
         for (String[] item : list) {
@@ -45,12 +47,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void add() {
         employeeList = getEmployeeList();
         System.out.println("Nhập tên");
-        String name = scanner.nextLine();
+        String name = FacilityRegex.name();
 
         System.out.println("Nhập ngày sinh");
-        String dateOfBirth = EmployeeRegex.dateOfBirth();
+        String dateOfBirth = EmployeeRegex.dateOfBirth(scanner.nextLine(), EmployeeRegex.BIRTHDAY);
 
-//        System.out.println("Nhập giới tính");
         String gender = EmployeeRegex.gender();
 
         System.out.println("Nhập email");
@@ -85,6 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         ReadAndWrite.write("src\\case_study\\data\\employee.csv", line);
         System.out.println("Thêm thành công");
     }
+
     @Override
     public void edit() {
         employeeList = getEmployeeList();
@@ -103,14 +105,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         if (flag) {
             System.out.println("Nhập tên");
-            String name = scanner.nextLine();
+            String name = FacilityRegex.name();
             employeeList.get(index).setName(name);
 
             System.out.println("Nhập ngày sinh");
-            String dateOfBirth = EmployeeRegex.dateOfBirth();
+            String dateOfBirth = EmployeeRegex.dateOfBirth(scanner.nextLine(), EmployeeRegex.BIRTHDAY);
             employeeList.get(index).setDateOfBirth(dateOfBirth);
 
-//            System.out.println("Nhập giới tính");
             String gender = EmployeeRegex.gender();
             employeeList.get(index).setGender(gender);
 

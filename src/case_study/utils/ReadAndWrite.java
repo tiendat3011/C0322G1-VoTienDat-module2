@@ -15,10 +15,11 @@ public class ReadAndWrite {
             }
         }
 
-        try (FileWriter fileWriter = new FileWriter(file,true);
+        try (FileWriter fileWriter = new FileWriter(file,false);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(line);
             bufferedWriter.newLine();
+            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

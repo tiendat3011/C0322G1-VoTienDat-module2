@@ -9,6 +9,7 @@ import java.util.List;
 
 public class PromotionServiceImpl implements PromotionService {
     public List<Contract> contractList = getContractList();
+
     public List<Contract> getContractList() {
         List<Contract> contractList = new ArrayList<>();
         List<String[]> list = ReadAndWrite.read("src\\case_study\\data\\contract.csv");

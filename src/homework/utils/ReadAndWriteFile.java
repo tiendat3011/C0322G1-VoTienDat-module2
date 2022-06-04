@@ -15,11 +15,12 @@ public class ReadAndWriteFile {
             }
         }
 
-        try (FileWriter fileWriter = new FileWriter(file);
+        try (FileWriter fileWriter = new FileWriter(file,false);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             for (String item: stringList){
                 bufferedWriter.write(item);
                 bufferedWriter.newLine();
+//                bufferedWriter.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,6 +43,7 @@ public class ReadAndWriteFile {
             while ((line = bufferedReader.readLine()) != null && !line.equals("")) {
                 String[] arr = line.split(",");
                 list.add(arr);
+//                bufferedReader.close();
             }
             return list;
         } catch (IOException e) {
