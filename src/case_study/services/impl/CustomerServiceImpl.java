@@ -52,7 +52,8 @@ public class CustomerServiceImpl implements CustomerService {
         String name = FacilityRegex.name();
 
         System.out.println("Nhập ngày sinh");
-        String dateOfBirth = CustomerRegex.dateOfBirth(scanner.nextLine(), CustomerRegex.BIRTHDAY);
+        String dateOfBirth = CustomerRegex.dateOfBirth();
+//        scanner.nextLine(), CustomerRegex.BIRTHDAY
 
         String gender = CustomerRegex.gender();
 
@@ -107,7 +108,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerList.get(index).setName(name);
 
             System.out.println("Nhập ngày sinh");
-            String dateOfBirth = CustomerRegex.dateOfBirth(scanner.nextLine(), CustomerRegex.BIRTHDAY);
+            String dateOfBirth = CustomerRegex.dateOfBirth();
             customerList.get(index).setDateOfBirth(dateOfBirth);
 
             String gender = EmployeeRegex.gender();

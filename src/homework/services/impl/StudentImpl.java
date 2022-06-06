@@ -62,39 +62,38 @@ public class StudentImpl implements Services {
     public void delete() {
         studentList = getStudentList();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("nhập id muốn xóa : ");
-        int id = sc.nextInt();
-        boolean flag = false;
-        if (studentList.isEmpty()) {
-            System.out.println("Không có để xóa");
-        } else {
-            for (Student item : studentList) {
-                if (item.getId() == (id)) {
-                    System.out.println("Bạn có muốn xóa (Y/N)");
-                    String confirm = scanner.nextLine();
-                    if ("Y".equals(confirm.toUpperCase())) {
-                        studentList.remove(item);
-                    } else if ("N".equals(confirm.toUpperCase())) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("nhập id muốn xóa : ");
+            int id = sc.nextInt();
+            boolean flag = false;
+            if (studentList.isEmpty()) {
+                System.out.println("Không có để xóa");
+            } else {
+                for (Student item : studentList) {
+                    if (item.getId() == (id)) {
+                        System.out.println("Bạn có muốn xóa (Y/N)");
+                        String confirm = scanner.nextLine();
+                        if ("Y".equals(confirm.toUpperCase())) {
+                            studentList.remove(item);
+                        } else if ("N".equals(confirm.toUpperCase())) {
+                            break;
+                        }
+                        flag = true;
                         break;
                     }
-                    flag = true;
-                    break;
+                }
+                if (!flag) {
+                    System.out.println("không tìm thấy thông tin");
                 }
             }
-            if (!flag) {
-                System.out.println("không tìm thấy thông tin");
+            if (flag) {
+                updateFile(studentList);
             }
         }
-        if (flag) {
-            updateFile(studentList);
-        }
-    }
 
     @Override
     public void find() {
         studentList = getStudentList();
-
         Scanner sc = new Scanner(System.in);
         System.out.println("nhập id muốn tìm : ");
         int id = sc.nextInt();

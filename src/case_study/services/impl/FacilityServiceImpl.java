@@ -41,12 +41,13 @@ public class FacilityServiceImpl implements FacilityService {
                         Integer.parseInt(item[8]));
             } else if (item[0].equals("Room")) {
                 facilityList.put(new Room(item[0],
-                        item[1],
-                        Double.parseDouble(item[2]),
-                        Integer.parseInt(item[3]),
-                        Integer.parseInt(item[4]),
-                        item[5],
-                        item[6]), Integer.parseInt(item[7]));
+                                item[1],
+                                Double.parseDouble(item[2]),
+                                Integer.parseInt(item[3]),
+                                Integer.parseInt(item[4]),
+                                item[5],
+                                item[6]),
+                        Integer.parseInt(item[7]));
             }
         }
         return facilityList;
