@@ -72,36 +72,39 @@ public class NvSanXuatImpl implements Services {
 
     @Override
     public void delete() {
-        nvSanXuatList = getNvSanXuatList();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("nhập mã nhân viên muốn xóa : ");
-        String idNv = sc.nextLine();
-        boolean flag = false;
-        if (nvSanXuatList.isEmpty()) {
-            System.out.println("Không có để xóa");
-        } else {
-            for (NvSanXuat item : nvSanXuatList) {
-                if (item.getIdNv().equals(idNv)) {
-                    System.out.println("Bạn có muốn xóa (Y/N)");
-                    String confirm = scanner.nextLine();
-                    if ("Y".equals(confirm.toUpperCase())) {
-                        nvSanXuatList.remove(item);
-                    } else if ("N".equals(confirm.toUpperCase())) {
+        nvSanXuatList = getNvSanXuatList();
+        try {
+
+            System.out.println("nhập mã nhân viên muốn xóa : ");
+            String idNv = scanner.nextLine();
+            boolean flag = false;
+            if (nvSanXuatList.isEmpty()) {
+                System.out.println("Không có để xóa");
+            } else {
+
+                for (NvSanXuat item : nvSanXuatList) {
+                    if (item.getIdNv().equals(idNv)) {
+                        System.out.println("Bạn có muốn xóa (Y/N)");
+                        String confirm = scanner.nextLine();
+                        if ("Y".equals(confirm.toUpperCase())) {
+                            nvSanXuatList.remove(item);
+                        } else if ("N".equals(confirm.toUpperCase())) {
+                            break;
+                        }
+                        flag = true;
                         break;
                     }
-                    flag = true;
-                    break;
+                }
+                if (!flag) {
+                    throw new NotFoundEmployeeException();
                 }
             }
-            try {
-                throw new NotFoundEmployeeException(" không có mã nhân viên trong danh sách");
-            } catch (NotFoundEmployeeException e) {
-                System.out.println(e.getMessage());
+            if (flag) {
+                updateFile(nvSanXuatList);
             }
-        }
-        if (flag) {
-            updateFile(nvSanXuatList);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -119,7 +122,6 @@ public class NvSanXuatImpl implements Services {
                 flag = true;
                 System.out.println(item);
                 break;
-
             }
         }
         if (!flag) {

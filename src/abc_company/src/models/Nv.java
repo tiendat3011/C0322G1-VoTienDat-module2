@@ -64,5 +64,6 @@ public abstract class Nv {
                 ", address='" + address + '\'' +
                 '}';
     }
+
     public abstract String getLine();
 }

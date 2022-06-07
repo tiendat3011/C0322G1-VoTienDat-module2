@@ -74,34 +74,37 @@ public class NvQuanLyImpl implements Services {
     @Override
     public void delete() {
         nvQuanLyList = getNvQuanLyList();
+        try {
 
-        System.out.println("nhập mã nhân viên muốn xóa : ");
-        String idNv = scanner.nextLine();
-        boolean flag = false;
-        if (nvQuanLyList.isEmpty()) {
-            System.out.println("Không có để xóa");
-        } else {
-            for (NvQuanLy item : nvQuanLyList) {
-                if (item.getIdNv().equals(idNv)) {
-                    System.out.println("Bạn có muốn xóa (Y/N)");
-                    String confirm = scanner.nextLine();
-                    if ("Y".equals(confirm.toUpperCase())) {
-                        nvQuanLyList.remove(item);
-                    } else if ("N".equals(confirm.toUpperCase())) {
+            System.out.println("nhập mã nhân viên muốn xóa : ");
+            String idNv = scanner.nextLine();
+            boolean flag = false;
+            if (nvQuanLyList.isEmpty()) {
+                System.out.println("Không có để xóa");
+            } else {
+
+                for (NvQuanLy item : nvQuanLyList) {
+                    if (item.getIdNv().equals(idNv)) {
+                        System.out.println("Bạn có muốn xóa (Y/N)");
+                        String confirm = scanner.nextLine();
+                        if ("Y".equals(confirm.toUpperCase())) {
+                            nvQuanLyList.remove(item);
+                        } else if ("N".equals(confirm.toUpperCase())) {
+                            break;
+                        }
+                        flag = true;
                         break;
                     }
-                    flag = true;
-                    break;
+                }
+                if (!flag) {
+                    throw new NotFoundEmployeeException();
                 }
             }
-            try {
-                throw new NotFoundEmployeeException(" không có mã nhân viên trong danh sách");
-            } catch (NotFoundEmployeeException e) {
-                System.out.println(e.getMessage());
+            if (flag) {
+                updateFile(nvQuanLyList);
             }
-        }
-        if (flag) {
-            updateFile(nvQuanLyList);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

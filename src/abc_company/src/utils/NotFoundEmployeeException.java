@@ -1,7 +1,8 @@
 package utils;
 
 public class NotFoundEmployeeException extends Exception {
-    public NotFoundEmployeeException(String message) {
-        super(message);
+    @Override
+    public String getMessage() {
+        return "Không có trong danh sách";
     }
 }

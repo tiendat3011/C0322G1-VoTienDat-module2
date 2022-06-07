@@ -5,8 +5,8 @@ import services.Impl.NvSanXuatImpl;
 
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Abc {
+    public static void displayMainMenu() {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (true) {
@@ -18,7 +18,7 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-                ;
+
             }
             switch (choice) {
                 case 1:
@@ -48,7 +48,6 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-
             }
             switch (choice) {
                 case 1:
@@ -84,7 +83,6 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-
             }
             switch (choice) {
                 case 1:
@@ -105,4 +103,3 @@ public class Main {
         }
     }
 }
-
