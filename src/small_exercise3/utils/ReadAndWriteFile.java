@@ -1,4 +1,4 @@
-package homework.utils;
+package small_exercise3.utils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public class ReadAndWriteFile {
                 e.printStackTrace();
             }
         }
+
         try (FileWriter fileWriter = new FileWriter(file,false);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             for (String item: stringList){
@@ -25,6 +26,7 @@ public class ReadAndWriteFile {
             e.printStackTrace();
         }
     }
+
     public static List<String[]> read(String path) {
         List<String[]> list = new ArrayList<>();
         File file = new File(path);

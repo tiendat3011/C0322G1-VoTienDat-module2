@@ -1,5 +1,6 @@
 package small_exercise2.utils;
 
+import case_study.utils.exception.NameException;
 import small_exercise2.models.Student;
 
 import java.time.DateTimeException;
@@ -13,6 +14,8 @@ import java.util.Scanner;
 public class Regex {
     public static Scanner scanner = new Scanner(System.in);
     public static String idRegexSV = "[0-9]{8}";
+    public static String FIRST_CHARACTER_UPPER = "^[A-Z][\\w]+$";
+
 
     public static void dateTimeCheck(String dateOfBirth) throws Exception {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
@@ -70,6 +73,23 @@ public class Regex {
             }
         }
         return "";
+    }
+    public static String name() {
+        boolean check = true;
+        String name = null;
+        while (check) {
+            name = scanner.nextLine();
+            try {
+                if (name.matches(FIRST_CHARACTER_UPPER)) {
+                    check = false;
+                } else {
+                    throw new NameException("NHập sai định dạng, chữ cái đầu phải viết hoa");
+                }
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return name;
     }
 
     public static int luong() {

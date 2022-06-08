@@ -49,7 +49,7 @@ public class StudentImpl implements Service {
         String id = scanner.nextLine();
 
         System.out.println("nhập tên ");
-        String name = scanner.nextLine();
+        String name = Regex.name();
 
         String gender = Regex.gender();
 
@@ -75,37 +75,37 @@ public class StudentImpl implements Service {
     @Override
     public void delete() {
         studentList = getStudentList();
-        try {
-            System.out.println("nhập mã nhân viên muốn xóa : ");
-            String id = scanner.nextLine();
-            boolean flag = false;
-            if (studentList.isEmpty()) {
-                System.out.println("Không có để xóa");
-            } else {
-
-                for (Student item : studentList) {
-                    if (item.getId().equals(id)) {
-                        System.out.println("Bạn có muốn xóa (Y/N)");
-                        String confirm = scanner.nextLine();
-                        if ("Y".equals(confirm.toUpperCase())) {
-                            studentList.remove(item);
-                        } else if ("N".equals(confirm.toUpperCase())) {
-                            break;
-                        }
-                        flag = true;
+        System.out.println("nhập mã nhân viên muốn xóa : ");
+        String id = scanner.nextLine();
+        boolean flag = false;
+        if (studentList.isEmpty()) {
+            System.out.println("Khong co trong danh sasch");
+        } else {
+            for (Student item : studentList) {
+                if (item.getId().equals(id)) {
+                    System.out.println("Bạn có muốn xóa (Y/N)");
+                    String confirm = scanner.nextLine();
+                    if ("Y".equals(confirm.toUpperCase())) {
+                        studentList.remove(item);
+                        System.out.println("da xoa thanh cong");
+                    } else if ("N".equals(confirm.toUpperCase())) {
                         break;
                     }
-                }
-                if (!flag) {
-                    throw new NotFoundEmployeeException();
+                    flag = true;
+                    break;
                 }
             }
-            if (flag) {
-                updateFile(studentList);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        if (flag) {
+            updateFile(studentList);
+        } else {
+            try {
+                throw new NotFoundEmployeeException();
+            } catch (NotFoundEmployeeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     @Override
@@ -124,7 +124,7 @@ public class StudentImpl implements Service {
         }
         if (flag) {
             System.out.println("nhập tên ");
-            String name = scanner.nextLine();
+            String name = Regex.name();
             studentList.get(index).setName(name);
 
             String gender = Regex.gender();
@@ -157,13 +157,11 @@ public class StudentImpl implements Service {
     @Override
     public void shortByName() {
         studentList = getStudentList();
-
         UpByName upByName = new UpByName();
         Collections.sort(studentList, upByName);
         for (Student item : studentList) {
             System.out.println(item);
         }
-
     }
 
     @Override

@@ -5,7 +5,6 @@ import java.util.Comparator;
 public class UpByName implements Comparator<Person> {
     @Override
     public int compare(Person o1, Person o2) {
-//        return o2.getName().compareTo(o1.getName());
         if (o1.getName().compareTo(o2.getName()) > 0) {
             return 1;
         } else {

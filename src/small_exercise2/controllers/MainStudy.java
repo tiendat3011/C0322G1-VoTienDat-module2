@@ -18,7 +18,6 @@ public class MainStudy {
                 choice = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.err.println("Input wrong format");
-
             }
             switch (choice) {
                 case 1:
@@ -28,7 +27,7 @@ public class MainStudy {
                     giaoVien();
                     break;
                 case 3:
-                    System.exit(4);
+                    System.exit(3);
             }
         }
     }
@@ -130,6 +129,7 @@ public class MainStudy {
                     break;
                 case 5:
                     teacher.edit();
+                    break;
                 case 6:
                     return;
             }

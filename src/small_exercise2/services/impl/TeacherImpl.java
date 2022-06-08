@@ -172,16 +172,20 @@ public class TeacherImpl implements Service {
 
         UpByName upByName = new UpByName();
         Collections.sort(teacherList, upByName);
-        display();
-
+        for (Teacher item : teacherList) {
+            System.out.println(item);
+        }
     }
 
     @Override
     public void shortByBirthDay() {
         teacherList = getTeacherList();
+
         ShortByDateOfBirth shortByDateOfBirth = new ShortByDateOfBirth();
         Collections.sort(teacherList, shortByDateOfBirth);
-        display();
+        for (Teacher item : teacherList) {
+            System.out.println(item);
+        }
     }
 
     public static void updateFile(List<Teacher> teacherList) {
